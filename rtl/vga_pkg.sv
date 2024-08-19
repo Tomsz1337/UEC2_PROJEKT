@@ -30,9 +30,11 @@ localparam VER_BLANK_END = 806;
 localparam RECT_LENGTH = 48;
 localparam RECT_HEIGHT = 64;
 
-localparam CHAR_HEIGHT = 512;
-localparam CHAR_LENGTH = 512;
-localparam CHAR_X = 256;
-localparam CHAR_Y = 128;
+localparam CHAR_HEIGHT = 432;
+localparam CHAR_LENGTH = 432;
+localparam CHAR_X_HOST = 48;
+localparam CHAR_Y_HOST = 144;
+localparam CHAR_X_GUEST = 528;
+localparam CHAR_Y_GUEST = 144;
 
 endpackage

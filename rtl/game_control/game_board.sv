@@ -15,7 +15,11 @@ module game_board
         input logic rst,
         input logic [1:0] start,                           // Reset
         input logic place,
-        input logic [5:0] mouse_pos               
+        input logic [5:0] mouse_pos,
+        input logic [5:0] ship_xy_host,
+        input logic [5:0] ship_xy_guest,
+        output logic [3:0] ship_code_host,
+        output logic [3:0]  ship_code_guest 
     );
     logic [1:0] start_loc;
     logic board_host [0:8][0:8];
@@ -24,6 +28,8 @@ module game_board
         always_ff @(posedge clk, posedge rst) begin
             if (rst) begin
                 start_loc <= 2'b00;
+                ship_code_host <= 4'b0000;
+                ship_code_guest <= 4'b0000;
                 board_host[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -69,6 +75,12 @@ module game_board
                         board_guest[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b11;
                     end
                 end
+            
+            else begin
+                ship_code_host <= board_host[ship_xy_host[5:3]][ship_xy_host[2:0]];
+                ship_code_guest <= board_guest[ship_xy_guest[5:3]][ship_xy_guest[2:0]];
+            end
+
             end
         end
             
