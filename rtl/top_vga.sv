@@ -39,7 +39,8 @@
  //logic  [11:0] xpos;
  //logic  [11:0] ypos;
  logic  mouse_left;
-
+ logic  place;
+ logic  [5:0] mouse_pos;
  logic  [11:0] xpos_buf_in;
  logic  [11:0] ypos_buf_in;
  logic  [11:0] xpos_buf_out;
@@ -111,6 +112,23 @@ always_ff @(posedge clk_65) begin
     xpos_buf_out <= xpos_buf_in;
     ypos_buf_out <= ypos_buf_in;
 end
+
+mouse_pos u_mouse_pos(
+    .clk(clk_65),
+    .rst,
+    .LMB(mouse_left),
+    .mouse_xpos(xpos_buf_out),
+    .mouse_ypos(ypos_buf_out),
+    .mouse_pos(mouse_pos),
+    .place(place)
+);
+
+game_board u_game_board(
+    .clk(clk_65),
+    .rst,
+    .mouse_pos(mouse_pos),
+    .place(place)
+);
 
 draw_mouse u_draw_mouse(
     .clk(clk_65),
