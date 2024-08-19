@@ -24,8 +24,8 @@ import vga_pkg::*;
 // LOCAL VARIABLES AND SIGNALES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 logic [11:0] rgb_nxt;
-localparam LIGHT_COLOR = 12'h5_8_5;
-localparam DARK_COLOR = 12'hF_F_C;
+localparam LIGHT_COLOR = 12'h0_C_F;
+localparam DARK_COLOR = 12'hC_C_C;
 vga_if int2();
 
  // INTERNAL LOGIC ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,25 +84,54 @@ always_comb begin : bg_comb_blk
         else if (int2.hcount == HOR_PIXELS - 1)     // RIGHT EDGE - BLUE //
             rgb_nxt = 12'h0_0_f;                    
        
-        // LINIJKA POMOCNICZA /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // RAMKA PLANSZY I POL 1PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
          
-          //else if(int2.hcount%8 == 4 & int2.vcount >= 118)
-                //rgb_nxt = 12'h0_0_0;
+          else if(int2.hcount%48 == 0 & ((int2.hcount >= 48 & int2.hcount <= 480) | (int2.hcount >= 528 & int2.hcount <= 960)) & int2.vcount >= 144 & int2.vcount <= 576)
+                rgb_nxt = 12'h0_0_0;
 
-        // RAMKA SZACHOWNICY /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       
-       
+          else if(int2.vcount%48 == 0 & ((int2.hcount >= 48 & int2.hcount <= 480) | (int2.hcount >= 528 & int2.hcount <= 960)) & int2.vcount >= 144 & int2.vcount <= 576)
+                rgb_nxt = 12'h0_0_0;
 
-        
 
-        // POLA SZACHOWNICY /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+        // POLA PLANSZY 48PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            else if ((int2.hcount >= 48 & int2.hcount < 480 & int2.vcount >= 144 & int2.vcount < 576))
+                rgb_nxt = LIGHT_COLOR;
        
-        
+            else if ((int2.hcount >= 528 & int2.hcount < 960 & int2.vcount >= 144 & int2.vcount < 576))
+                rgb_nxt = DARK_COLOR;
+        // OBRAMOWIANIE PLANSZY 20PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //else if ((int2.hcount >= 29 & int2.hcount <= 45) & int2.vcount >= 164 & int2.vcount <= 601)
+                //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
+                   // rgb_nxt = 12'hf_f_f;
+                // else
+                   // rgb_nxt = 12'h0_0_0;
+
+               // else if ((int2.hcount >= 450 & int2.hcount <= 466) & int2.vcount >= 164 & int2.vcount <= 601)
+                //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
+                    //rgb_nxt = 12'hf_f_f;
+                 //else
+                    //rgb_nxt = 12'h0_0_0;
+
+
+                //else if ((int2.hcount >= 45 & int2.hcount <= 450) & int2.vcount >= 164 & int2.vcount <= 180)
+                //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
+                    //rgb_nxt = 12'hf_f_f;
+                 //else
+                   // rgb_nxt = 12'h0_0_0;
+
+               // else if ((int2.hcount >= 45 & int2.hcount <= 450) & int2.vcount >= 585 & int2.vcount <= 601)
+                //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
+                   // rgb_nxt = 12'hf_f_f;
+                // else
+                  //  rgb_nxt = 12'h0_0_0;
+
+
+
         else                                     // KOLOR TŁA //
-            rgb_nxt = 12'h8_8_8;                
+            rgb_nxt = 12'hF_A_C;                
+
+            
     end
 end
 
 endmodule
-
