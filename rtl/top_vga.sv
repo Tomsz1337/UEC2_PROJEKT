@@ -112,6 +112,17 @@ always_ff @(posedge clk_65) begin
     ypos_buf_out <= ypos_buf_in;
 end
 
+mouse_pos u_mouse_pos
+(
+    .clk(clk_65),
+    .rst,
+    .LMB(mouse_left),
+    .mouse_xpos(xpos_buf_out),
+    .mouse_ypos(ypos_buf_out),
+    .mouse_pos(mouse_pos),
+    .place(place)
+);
+
 draw_mouse u_draw_mouse(
     .clk(clk_65),
     .rst,
