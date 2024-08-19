@@ -32,5 +32,3 @@ interface vga_if();
     );
 
 endinterface
-
-
