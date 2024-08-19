@@ -1,13 +1,13 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Company : AGH University of Krakow
-// Create Date : 23.07.2024
-// Designers Name : Dawid Mironiuk & Michał Malara
-// Module Name : bg_Letters
-// Project Name : SZACHY - Projekt zaliczeniowy
-// Target Devices : BASYS3
-// 
-// Description : Moduł odpowiedzialny za połoenie figur na szachownicy.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+// Company : AGH University of Krakow                                       //
+// Create Date : 16.08.2024                                                 //
+// Designers Name : Jan Panek & Tomek                                       //
+// Module Name : bg_Letters                                                 //
+// Project Name : Statki                                                    //
+// Target Devices : BASYS3                                                  //
+//                                                                          //
+// Description : Moduł odpowiedzialny za połoenie figur na szachownicy.     //
+//////////////////////////////////////////////////////////////////////////////
 
 `timescale 1 ns / 1 ps
 
@@ -25,12 +25,16 @@ logic [10:0] char_line_buf;
 logic [10:0] char_code_buf; 
 
 always_comb begin
-    char_line_buf = vga_in.vcount - 120;
-    if(vga_in.hcount%64 >= 28 & vga_in.hcount%64 <= 35) begin
-        char_code_buf = "A" + vga_in.hcount [10:6] - 4;
+    char_line_buf = vga_in.vcount;
+    //if(vga_in.hcount%44 >= 14 & vga_in.hcount%44 <= 22) begin
+       // char_code_buf = "A" + vga_in.hcount [10:6];
+    //end
+
+    if(vga_in.hcount%45 >= 14 & vga_in.hcount%45 <= 22) begin
+        char_code_buf = "A" + vga_in.hcount [10:6];
     end
-    else if (vga_in.vcount%64 >= 24 & vga_in.vcount%64 <= 40) begin
-        char_code_buf = "8" - vga_in.vcount [10:6] + 2;
+    else if ((vga_in.vcount)%45 >= 7 & (vga_in.vcount)%45 <= 23) begin
+        char_code_buf = "1" + vga_in.vcount [10:6] - 3;
     end    
     else begin
         char_code_buf = 0;
@@ -38,10 +42,10 @@ always_comb begin
 end
 
 always_comb begin
-    if((vga_in.hcount >= 256 & vga_in.hcount <= 768) & ((vga_in.vcount >= 104 & vga_in.vcount <= 120) | (vga_in.vcount >= 648 & vga_in.vcount <= 664))) begin
+    if((vga_in.hcount >= 45 & vga_in.hcount <= 450) & ((vga_in.vcount >= 164 & vga_in.vcount <= 180) | (vga_in.vcount >= 586 & vga_in.vcount <= 601))) begin
         char_addr = {char_code_buf[6:0] , char_line_buf[3:0]};
     end
-    else if ((vga_in.vcount >= 128 & vga_in.vcount <= 640) & ((vga_in.hcount >= 236 & vga_in.hcount <= 244) | (vga_in.hcount >= 780 & vga_in.hcount <= 788)))  begin
+    else if ((vga_in.vcount >= 180 & vga_in.vcount <= 585) & ((vga_in.hcount >= 37 & vga_in.hcount <= 45) | (vga_in.hcount >= 450 & vga_in.hcount <=458)))  begin
         char_addr = {char_code_buf[6:0] , char_line_buf[3:0]};
     end
     else begin
