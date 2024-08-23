@@ -15,10 +15,14 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Deskt
 INFO: [VRFC 10-311] analyzing module top_vga
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/delay.sv" into library work
 INFO: [VRFC 10-311] analyzing module delay
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/Letters/bg_letters.sv" into library work
-INFO: [VRFC 10-311] analyzing module bg_letters
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/Letters/font_rom.sv" into library work
-INFO: [VRFC 10-311] analyzing module font_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/ship/draw_ship.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_ship
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/game_control/game_board.sv" into library work
+INFO: [VRFC 10-311] analyzing module game_board
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/ship/ship_rom.sv" into library work
+INFO: [VRFC 10-311] analyzing module ship_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/Mouse/mouse_pos.sv" into library work
+INFO: [VRFC 10-311] analyzing module mouse_pos
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/Mouse/draw_mouse.sv" into library work
 INFO: [VRFC 10-311] analyzing module draw_mouse
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/tochmanek/Desktop/UEC2_PROJEKT/fpga/rtl/top_vga_basys3.sv" into library work
@@ -44,6 +48,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "/home/student/tochmanek/Desktop/UEC2_PR
 INFO: [VRFC 10-3107] analyzing entity 'MouseDisplay'
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 4 differs from formal bit length 2 for port 'ship_code_host' [/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/top_vga.sv:156]
+WARNING: [VRFC 10-3645] port 'start' remains unconnected for this instance [/home/student/tochmanek/Desktop/UEC2_PROJEKT/rtl/top_vga.sv:151]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -58,12 +64,15 @@ Compiling package unisim.vcomponents
 Compiling package work.vga_pkg
 Compiling module work.vga_if
 Compiling module work.vga_timing
-Compiling module work.bg_letters
-Compiling module work.font_rom
+Compiling module work.delay(WIDTH=38,CLK_DEL=2)
+Compiling module work.draw_ship
+Compiling module work.ship_rom
 Compiling module work.delay(WIDTH=38)
 Compiling module work.draw_bg
 Compiling architecture behavioral of entity work.Ps2Interface [ps2interface_default]
 Compiling architecture behavioral of entity work.MouseCtl [mousectl_default]
+Compiling module work.mouse_pos
+Compiling module work.game_board
 Compiling architecture behavioral of entity work.MouseDisplay [mousedisplay_default]
 Compiling module work.draw_mouse
 Compiling module work.top_vga

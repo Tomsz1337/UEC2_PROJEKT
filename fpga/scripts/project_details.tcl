@@ -38,17 +38,11 @@ set sv_files {
     ../rtl/draw_bg.sv
     ../rtl/top_vga.sv
     ../rtl/vga_if.sv
-    ../rtl/Rect/draw_rect.sv
-    ../rtl/Rect/mouse_position.sv
+    ../rtl/Mouse/mouse_pos.sv
     ../rtl/Mouse/draw_mouse.sv
-    ../rtl/Figure/draw_figure.sv
-    ../rtl/Figure/figure_position.sv
-    ../rtl/Figure/figure_rom.sv
-    ../rtl/Game_Logic/chess_board.sv
-    ../rtl/Game_Logic/figure_move_logic.sv
-    ../rtl/Letters/font_rom.sv
-    ../rtl/Letters/bg_letters.sv
-    ../rtl/transmission.sv
+    ../rtl/game_control/game_board.sv
+    
+   
     ../rtl/delay.sv
     rtl/top_vga_basys3.sv
 }

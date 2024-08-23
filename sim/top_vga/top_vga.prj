@@ -16,8 +16,10 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/Rect/draw_rect.sv \
         ../../rtl/top_vga.sv \
         ../../rtl/delay.sv \
-        ../../rtl/Letters/bg_letters.sv \
-        ../../rtl/Letters/font_rom.sv \
+        ../../rtl/ship/draw_ship.sv \
+        ../../rtl/game_control/game_board.sv \
+        ../../rtl/ship/ship_rom.sv \
+        ../../rtl/Mouse/mouse_pos.sv \
         ../../rtl/Mouse/draw_mouse.sv \
         ../../fpga/rtl/top_vga_basys3.sv \
         ../common/tiff_writer.sv \

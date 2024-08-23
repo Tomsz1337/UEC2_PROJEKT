@@ -45,11 +45,16 @@
  logic  [11:0] ypos_buf_in;
  logic  [11:0] xpos_buf_out;
  logic  [11:0] ypos_buf_out;
-
+ logic [47:0] ship_line_pixels;
  logic  [10:0] char_addr;
  logic  [7:0]  char_pixels;
+logic [8:0] addres;
 
- 
+logic [4:0] ship_line;
+logic [3:0] ship_code_host;
+logic [3:0] ship_code_guest;
+ logic [5:0] ship_xy_host;
+ logic [5:0] ship_xy_guest;
  
  // SIGNALS ASSIGNMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +70,7 @@
      .vga_out(vga_tim)
  );
 
-bg_letters u_bg_letters(
+/*bg_letters u_bg_letters(
     .clk(clk_65),
     .rst,
     .vga_in(vga_tim),
@@ -77,11 +82,31 @@ font_rom u_font_rom(
     .addr(char_addr),
     .char_line_pixels(char_pixels)
 );
+*/
+draw_ship u_draw_ship (
+    .clk(clk_65),
+    .rst,
+    .ship_xy_guest(ship_xy_guest),
+    .ship_xy_host(ship_xy_host),
+    .ship_line(ship_line),
+    .vga_in(vga_tim),
+    .vga_out(vga_bg),
+    .ship_pixels(ship_line_pixels)
+);
+always_comb begin
+    
+    addres = {ship_code_host, ship_line};
+end
+
+ship_rom u_ship_rom (
+    .clk(clk_65),
+    .addres(addres),
+    .ship_line_pixels_out(ship_line_pixels)
+);
 
 draw_bg u_draw_bg (
     .clk(clk_65),
     .rst,
-    .frame_pixels(char_pixels),
     .vga_in(vga_tim),
     .vga_out(vga_bg)
 );
@@ -126,6 +151,9 @@ mouse_pos u_mouse_pos(
 game_board u_game_board(
     .clk(clk_65),
     .rst,
+    .ship_xy_guest(ship_xy_guest),
+    .ship_xy_host(ship_xy_host),
+    .ship_code_host(ship_code_host),
     .mouse_pos(mouse_pos),
     .place(place)
 );
