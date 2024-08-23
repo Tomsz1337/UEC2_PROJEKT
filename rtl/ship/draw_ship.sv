@@ -82,36 +82,33 @@ always_comb begin
     ship_line_buf = vga_in.vcount - CHAR_Y_HOST;
     ship_xy_host_buf = vga_in.hcount - CHAR_X_HOST;
     ship_xy_guest_buf = vga_in.hcount - CHAR_X_GUEST;
-    ship_xy_host = ship_xy_host_buf[10:5] + 8*ship_line_buf[10:5];
-    ship_xy_guest = ship_xy_guest_buf[10:5] + 8*ship_line_buf[10:5];
+    ship_xy_host = ship_xy_host_buf[10:5] + ship_line_buf[10:5];
+    ship_xy_guest = ship_xy_guest_buf[10:5] + ship_line_buf[10:5];
     ship_line = int1.vcount[5:0] - CHAR_Y_HOST[5:0];
 end
 
 always_comb begin
     if(((int2.hcount >= CHAR_X_HOST) & (int2.hcount < CHAR_LENGTH + CHAR_X_HOST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
-        if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b0) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b1)) begin    
-            rgb_nxt = 12'h6_6_6;
-        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b0)) begin    
-            rgb_nxt = 12'hf_f_f;
-        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_HOST)%48] == 1'b1)) begin    
-            rgb_nxt = 12'h0_0_0;
+        
+        if((ship_pixels[63 - (int2.hcount[10:0] - CHAR_X_HOST)%64] == 1'b1) & (ship_pixels[62 - (int2.hcount[10:0] - CHAR_X_HOST)%64] == 1'b1)) begin    
+            rgb_nxt = 12'hf_0_0;
         end else begin
             rgb_nxt = int2.rgb;
         end
-    else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
-        if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b0) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1)) begin    
-            rgb_nxt = 12'h6_6_6;
-        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b0)) begin    
-            rgb_nxt = 12'hf_f_f;
+        else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
+        if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b0) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b1)) begin    
+            rgb_nxt = int2.rgb;
+        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b0)) begin    
+            rgb_nxt = int2.rgb;
         end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1)) begin    
-            rgb_nxt = 12'h0_0_0;
-        end else begin
             rgb_nxt = int2.rgb;
+        end else begin
+            rgb_nxt = int2.rgb; 
         end
-            
+      
     else begin
         rgb_nxt = int2.rgb;
     end
-end
 
+end
 endmodule

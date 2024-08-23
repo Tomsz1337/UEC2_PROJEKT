@@ -35,7 +35,7 @@
  vga_if vga_bg();
  vga_if vga_rect();
  vga_if mouse_out();
-
+ vga_if draw_out();
  //logic  [11:0] xpos;
  //logic  [11:0] ypos;
  logic  mouse_left;
@@ -48,11 +48,11 @@
  logic [47:0] ship_line_pixels;
  logic  [10:0] char_addr;
  logic  [7:0]  char_pixels;
-logic [8:0] addres;
+logic [6:0] addres;
 
 logic [4:0] ship_line;
-logic [3:0] ship_code_host;
-logic [3:0] ship_code_guest;
+logic [1:0] ship_code_host;
+logic [1:0] ship_code_guest;
  logic [5:0] ship_xy_host;
  logic [5:0] ship_xy_guest;
  
@@ -83,26 +83,6 @@ font_rom u_font_rom(
     .char_line_pixels(char_pixels)
 );
 */
-draw_ship u_draw_ship (
-    .clk(clk_65),
-    .rst,
-    .ship_xy_guest(ship_xy_guest),
-    .ship_xy_host(ship_xy_host),
-    .ship_line(ship_line),
-    .vga_in(vga_tim),
-    .vga_out(vga_bg),
-    .ship_pixels(ship_line_pixels)
-);
-always_comb begin
-    
-    addres = {ship_code_host, ship_line};
-end
-
-ship_rom u_ship_rom (
-    .clk(clk_65),
-    .addres(addres),
-    .ship_line_pixels_out(ship_line_pixels)
-);
 
 draw_bg u_draw_bg (
     .clk(clk_65),
@@ -111,7 +91,41 @@ draw_bg u_draw_bg (
     .vga_out(vga_bg)
 );
 
+draw_ship u_draw_ship (
+    .clk(clk_65),
+    .rst,
+    .ship_xy_guest(ship_xy_guest),
+    .ship_xy_host(ship_xy_host),
+    .ship_line(ship_line),
+    .vga_in(vga_bg),
+    .vga_out(draw_out),
+    .ship_pixels(ship_line_pixels)
+);
 
+game_board u_game_board(
+    .clk(clk_65),
+    .rst,
+    .ship_xy_guest(ship_xy_guest),
+    .ship_xy_host(ship_xy_host),
+    .ship_code_host(ship_code_host),
+    .mouse_pos(mouse_pos),
+    .place(place)
+);
+
+always_comb begin
+    
+    addres = {ship_code_host, ship_line};
+end
+
+mouse_pos u_mouse_pos(
+    .clk(clk_65),
+    .rst,
+    .LMB(mouse_left),
+    .mouse_xpos(xpos_buf_out),
+    .mouse_ypos(ypos_buf_out),
+    .mouse_pos(mouse_pos),
+    .place(place)
+);
 
 MouseCtl u_MouseCtl(
     .clk(clk_100),
@@ -138,34 +152,22 @@ always_ff @(posedge clk_65) begin
     ypos_buf_out <= ypos_buf_in;
 end
 
-mouse_pos u_mouse_pos(
-    .clk(clk_65),
-    .rst,
-    .LMB(mouse_left),
-    .mouse_xpos(xpos_buf_out),
-    .mouse_ypos(ypos_buf_out),
-    .mouse_pos(mouse_pos),
-    .place(place)
-);
-
-game_board u_game_board(
-    .clk(clk_65),
-    .rst,
-    .ship_xy_guest(ship_xy_guest),
-    .ship_xy_host(ship_xy_host),
-    .ship_code_host(ship_code_host),
-    .mouse_pos(mouse_pos),
-    .place(place)
-);
-
 draw_mouse u_draw_mouse(
     .clk(clk_65),
     .rst,
-    .vga_in(vga_bg),
+    .vga_in(draw_out),
     .vga_out(mouse_out),
     .xpos(xpos_buf_out),
     .ypos(ypos_buf_out)
 );
+
+ship_rom u_ship_rom (
+    .clk(clk_65),
+    .addres(addres),
+    .ship_line_pixels_out(ship_line_pixels)
+);
+
+
 
 
  endmodule
