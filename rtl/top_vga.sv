@@ -48,9 +48,9 @@
  logic [47:0] ship_line_pixels;
  logic  [10:0] char_addr;
  logic  [7:0]  char_pixels;
-logic [6:0] addres;
+logic [7:0] addres;
 
-logic [4:0] ship_line;
+logic [5:0] ship_line;
 logic [1:0] ship_code_host;
 logic [1:0] ship_code_guest;
  logic [5:0] ship_xy_host;

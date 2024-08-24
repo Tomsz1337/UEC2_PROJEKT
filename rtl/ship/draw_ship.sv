@@ -18,7 +18,7 @@ module draw_ship
     input  logic [47:0]  ship_pixels,
     output logic [5:0]   ship_xy_host,
     output logic [5:0]   ship_xy_guest,
-    output logic [4:0]   ship_line,
+    output logic [5:0]   ship_line,
     vga_if.in  vga_in,
     vga_if.out vga_out
 );
@@ -82,20 +82,20 @@ always_comb begin
     ship_line_buf = vga_in.vcount - CHAR_Y_HOST;
     ship_xy_host_buf = vga_in.hcount - CHAR_X_HOST;
     ship_xy_guest_buf = vga_in.hcount - CHAR_X_GUEST;
-    ship_xy_host = ship_xy_host_buf[10:5] + ship_line_buf[10:5];
+    ship_xy_host = ship_xy_host_buf[10:6] + 9*ship_line_buf[10:6];
     ship_xy_guest = ship_xy_guest_buf[10:5] + ship_line_buf[10:5];
-    ship_line = int1.vcount[5:0] - CHAR_Y_HOST[5:0];
+    ship_line = int1.vcount[5:1] - CHAR_Y_HOST[5:1];
 end
 
 always_comb begin
     if(((int2.hcount >= CHAR_X_HOST) & (int2.hcount < CHAR_LENGTH + CHAR_X_HOST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
         
-        if((ship_pixels[63 - (int2.hcount[10:0] - CHAR_X_HOST)%64] == 1'b1) & (ship_pixels[62 - (int2.hcount[10:0] - CHAR_X_HOST)%64] == 1'b1)) begin    
+        if((ship_pixels[47 - (int2.hcount[10:0] - CHAR_X_HOST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:0] - CHAR_X_HOST)%48] == 1'b1)) begin    
             rgb_nxt = 12'hf_0_0;
         end else begin
             rgb_nxt = int2.rgb;
         end
-        else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
+        /*else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
         if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b0) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b1)) begin    
             rgb_nxt = int2.rgb;
         end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b0)) begin    
@@ -105,7 +105,7 @@ always_comb begin
         end else begin
             rgb_nxt = int2.rgb; 
         end
-      
+      */
     else begin
         rgb_nxt = int2.rgb;
     end

@@ -32,8 +32,8 @@
     
     localparam CHAR_HEIGHT = 432;
     localparam CHAR_LENGTH = 432;
-    localparam CHAR_X_HOST = 48;
-    localparam CHAR_Y_HOST = 144;
+    localparam CHAR_X_HOST = 49;
+    localparam CHAR_Y_HOST = 145;
     localparam CHAR_X_GUEST = 528;
     localparam CHAR_Y_GUEST = 144;
     
