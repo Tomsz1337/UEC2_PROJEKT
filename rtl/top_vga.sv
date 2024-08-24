@@ -45,16 +45,16 @@
  logic  [11:0] ypos_buf_in;
  logic  [11:0] xpos_buf_out;
  logic  [11:0] ypos_buf_out;
- logic [47:0] ship_line_pixels;
+ logic [31:0] ship_line_pixels;
  logic  [10:0] char_addr;
  logic  [7:0]  char_pixels;
-logic [7:0] addres;
+logic [6:0] addres;
 
-logic [5:0] ship_line;
+logic [4:0] ship_line;
 logic [1:0] ship_code_host;
 logic [1:0] ship_code_guest;
- logic [5:0] ship_xy_host;
- logic [5:0] ship_xy_guest;
+ logic [6:0] ship_xy_host;
+ logic [6:0] ship_xy_guest;
  
  // SIGNALS ASSIGNMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

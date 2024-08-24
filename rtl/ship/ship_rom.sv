@@ -14,13 +14,13 @@
 module ship_rom
     (
         input  logic   clk,
-        input  logic  [7:0] addres,
-        output logic  [47:0] ship_line_pixels_out   // pixels of the figure line //
+        input  logic  [6:0] addres,
+        output logic  [31:0] ship_line_pixels_out   // pixels of the figure line //
     );
 
     // SIGNAL DECLARATION //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    logic [47:0] data;
+    logic [31:0] data;
 
     // BODY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -30,103 +30,99 @@ module ship_rom
     
     always_comb begin
         case (addres)
-            7'h000: data = 48'hffffffffffff;
-            7'h001: data = 48'hffffffffffff;
-            7'h002: data = 48'hffffffffffff;
-            7'h003: data = 48'hffffffffffff;
-            7'h004: data = 48'hffffffffffff;
-            7'h005: data = 48'hffffffffffff;
-            7'h006: data = 48'hffffffffffff;
-            7'h007: data = 48'hffffffffffff;
-            7'h008: data = 48'hffffffffffff;
-            7'h009: data = 48'hffffffffffff;
-            7'h00a: data = 48'hffffffffffff;
-            7'h00b: data = 48'hffffffffffff;
-            7'h00c: data = 48'hffffffffffff;
-            7'h00d: data = 48'hffffffffffff;
-            7'h00e: data = 48'hffffffffffff;
-            7'h00f: data = 48'hffffffffffff;
-            7'h010: data = 48'hffffffffffff;
-            7'h011: data = 48'hffffffffffff;
-            7'h012: data = 48'hffffffffffff;
-            7'h013: data = 48'hffffffffffff;
-            7'h014: data = 48'hffffffffffff;
-            7'h015: data = 48'hffffffffffff;
-            7'h016: data = 48'hffffffffffff;
-            7'h017: data = 48'hffffffffffff;
-            7'h018: data = 48'hffffffffffff;
-            7'h019: data = 48'hffffffffffff;
-            7'h01a: data = 48'hffffffffffff;
-            7'h01b: data = 48'hffffffffffff;
-            7'h01c: data = 48'hffffffffffff;
-            7'h01d: data = 48'hffffffffffff;
-            7'h01e: data = 48'hffffffffffff;
-            7'h01f: data = 48'hffffffffffff;
-            7'h020: data = 48'hffffffffffff;
-            7'h021: data = 48'hffffffffffff;
-            7'h022: data = 48'hffffffffffff;
-            7'h023: data = 48'hffffffffffff;
-            7'h024: data = 48'hffffffffffff;
-            7'h025: data = 48'hffffffffffff; //0100000
-            7'h026: data = 48'hffffffffffff;
-            7'h027: data = 48'hffffffffffff;
-            7'h028: data = 48'hffffffffffff;
-            7'h029: data = 48'hffffffffffff;
-            7'h02a: data = 48'hffffffffffff;
-            7'h02b: data = 48'hffffffffffff;
-            7'h02c: data = 48'hffffffffffff;
-            7'h02d: data = 48'hffffffffffff;
-            7'h02e: data = 48'hffffffffffff;
-            7'h02f: data = 48'hffffffffffff;
+            //////////Statek
+            7'h00: data = 32'hffffffff;  //0100000
+            7'h01: data = 32'hffffffff;
+            7'h02: data = 32'hffffffff;
+            7'h03: data = 32'hffffffff;
+            7'h04: data = 32'hffffffff;
+            7'h05: data = 32'hffffffff;
+            7'h06: data = 32'hffffffff;
+            7'h07: data = 32'hffffffff;
+            7'h08: data = 32'hffffffff;
+            7'h09: data = 32'hffffffff;
+            7'h0a: data = 32'hffffffff;
+            7'h0b: data = 32'hffffffff;
+            7'h0c: data = 32'hffffffff;
+            7'h0d: data = 32'hffffffff;
+            7'h0e: data = 32'hffffffff;
+            7'h0f: data = 32'hffffffff;
+            
 
-            7'b01000000: data = 48'h000000000000; //0000001100000
-            7'h031: data = 48'h000000000000;
-            7'h032: data = 48'h000000000000;
-            7'h033: data = 48'h000000000000;
-            7'h034: data = 48'h000000000000;
-            7'h035: data = 48'h000000000000;
-            7'h036: data = 48'h000000000000;
-            7'h037: data = 48'h000000000000;
-            7'h038: data = 48'h000000000000;
-            7'h039: data = 48'h000000000000;
-            7'h03a: data = 48'h000000000000;
-            7'h03b: data = 48'h000000000000;
-            7'h03c: data = 48'h000000000000;
-            7'h03d: data = 48'h000000000000;
-            7'h03e: data = 48'h000000000000;
-            7'h03f: data = 48'h000000000000;
-            7'h040: data = 48'h000000000000;
-            7'h041: data = 48'h000000000000;
-            7'h042: data = 48'h000000000000;
-            7'h043: data = 48'h000000000000;
-            7'h044: data = 48'h000000000000;
-            7'h045: data = 48'h000000000000;
-            7'h046: data = 48'h000000000000;
-            7'h047: data = 48'h000000000000;
-            7'h048: data = 48'h000000000000;
-            7'h049: data = 48'h000000000000;
-            7'h04a: data = 48'h000000000000;
-            7'h04b: data = 48'h000000000000;
-            7'h04c: data = 48'h000000000000;
-            7'h04d: data = 48'h000000000000;
-            7'h04e: data = 48'h000000000000;
-            7'h04f: data = 48'h000000000000;
-            7'h050: data = 48'h000000000000;
-            7'h051: data = 48'h000000000000;
-            7'h052: data = 48'h000000000000;
-            7'h053: data = 48'h000000000000;
-            7'h054: data = 48'h000000000000;
-            7'h055: data = 48'h000000000000;
-            7'h056: data = 48'h000000000000;
-            7'h057: data = 48'h000000000000;
-            7'h058: data = 48'h000000000000;
-            7'h059: data = 48'h000000000000;
-            7'h05a: data = 48'h000000000000;
-            7'h05b: data = 48'h000000000000;
-            7'h05c: data = 48'h000000000000;
-            7'h05d: data = 48'h000000000000;
-            7'h05e: data = 48'h000000000000;
-            7'h05f: data = 48'h000000000000;
+            /////////////////PUSTE POLE
+            7'h20: data = 32'h00000000; 
+            7'h21: data = 32'h00000000;
+            7'h22: data = 32'h00000000;
+            7'h23: data = 32'h00000000;
+            7'h24: data = 32'h00000000;
+            7'h25: data = 32'h00000000;
+            7'h26: data = 32'h00000000;
+            7'h27: data = 32'h00000000;
+            7'h28: data = 32'h00000000;
+            7'h29: data = 32'h00000000;
+            7'h2a: data = 32'h00000000;
+            7'h2b: data = 32'h00000000;
+            7'h2c: data = 32'h00000000;
+            7'h2d: data = 32'h11110000;
+            7'h2e: data = 32'hF1110000;
+            7'h2f: data = 32'h00000000;
+            7'h30: data = 32'h00000000;
+            7'h31: data = 32'h00000000;
+            7'h32: data = 32'h00000000;
+            7'h33: data = 32'h11100000;
+            7'h34: data = 32'h00000000;
+            7'h35: data = 32'h00000000;
+            7'h36: data = 32'h00000000;
+            7'h37: data = 32'h00000000;
+            7'h38: data = 32'h00000000;
+            7'h39: data = 32'h00000000;
+            7'h3a: data = 32'h00000000;
+            7'h3b: data = 32'h00000000;
+            7'h3c: data = 32'h00000000;
+            7'h3d: data = 32'h00000000;
+            7'h3e: data = 32'h00000000;
+            7'h3f: data = 32'h00000000;
+
+
+            //////////////TRFIONY
+            7'h40: data = 32'hF000000F; //100.0000
+            7'h41: data = 32'hFF0000FF;
+            7'h42: data = 32'h0F0000F0;
+            7'h43: data = 32'h0F000FF0;
+            7'h44: data = 32'h0FF00F00;
+            7'h45: data = 32'h00F00F00;
+            7'h46: data = 32'h00FC3F00;
+            7'h47: data = 32'h000FF000;
+            7'h48: data = 32'h00F00000;
+            7'h49: data = 32'h00F00000;
+            7'h4a: data = 32'h00F00000;
+            7'h4b: data = 32'h00F00000;
+            7'h4c: data = 32'h00F00000;
+            7'h4d: data = 32'h00FF0000;
+            7'h4e: data = 32'h00FF0000;
+            7'h4f: data = 32'h000FF000;
+            
+
+            ////////////////////////CHYBIONY
+            7'h60: data = 32'h00000000; 
+            7'h61: data = 32'h00000000;
+            7'h62: data = 32'h00000000;
+            7'h63: data = 32'h11110000;
+            7'h64: data = 32'hF1110000;
+            7'h65: data = 32'h00000000;
+            7'h66: data = 32'h00000000;
+            7'h67: data = 32'h00000000;
+            7'h68: data = 32'h00000000;
+            7'h69: data = 32'h00000000;
+            7'h6a: data = 32'h00000000;
+            7'h6b: data = 32'h00000000;
+            7'h6c: data = 32'h00000000;
+            7'h6d: data = 32'h11110000;
+            7'h6e: data = 32'hF1110000;
+            7'h6f: data = 32'h00000000;
+            
+
+            
         endcase
     end
 endmodule
