@@ -105,20 +105,20 @@ module ship_rom
 
             ////////////////////////CHYBIONY
             7'h60: data = 32'h00000000; 
-            7'h61: data = 32'h7FFFFFFE;
-            7'h62: data = 32'h7000000E;
-            7'h63: data = 32'h7000000E;
-            7'h64: data = 32'h7000000E;
-            7'h65: data = 32'h7000000E;
-            7'h66: data = 32'h7000000E;
-            7'h67: data = 32'h7000000E;
-            7'h68: data = 32'h7000000E;
-            7'h69: data = 32'h7000000E;
-            7'h6a: data = 32'h7000000E;
-            7'h6b: data = 32'h7000000E;
-            7'h6c: data = 32'h7000000E;
-            7'h6d: data = 32'h7000000E;
-            7'h6e: data = 32'h7FFFFFFE;
+            7'h61: data = 32'h00000000;
+            7'h62: data = 32'h07FFFFE0;
+            7'h63: data = 32'h070000E0;
+            7'h64: data = 32'h070000E0;
+            7'h65: data = 32'h070000E0;
+            7'h66: data = 32'h070000E0;
+            7'h67: data = 32'h070000E0;
+            7'h68: data = 32'h070000E0;
+            7'h69: data = 32'h070000E0;
+            7'h6a: data = 32'h070000E0;
+            7'h6b: data = 32'h070000E0;
+            7'h6c: data = 32'h070000E0;
+            7'h6d: data = 32'h07FFFFE0;
+            7'h6e: data = 32'h00000000;
             7'h6f: data = 32'h00000000;
             
 
