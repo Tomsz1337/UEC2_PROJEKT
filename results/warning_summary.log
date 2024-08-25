@@ -1,9 +1,13 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-09 22:45:50
+Created: 2024-08-23 07:57:17
 
 ----SYNTHESIS----
-No synthesis log file found!
+WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
+ERROR: [Synth 8-439] module 'draw_bg' not found [rtl/top_vga.sv:81]
+ERROR: [Synth 8-6156] failed synthesizing module 'top_vga' [rtl/top_vga.sv:17]
+ERROR: [Synth 8-6156] failed synthesizing module 'top_vga_basys3' [fpga/rtl/top_vga_basys3.sv:17]
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
 
 ----IMPLEMENTATION----
 No implementation log file found!
