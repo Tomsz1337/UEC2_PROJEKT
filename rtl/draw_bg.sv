@@ -86,18 +86,18 @@
         
          // RAMKA PLANSZY I POL 1PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           
-           else if(int2.hcount%48 == 0 & ((int2.hcount >= 48 & int2.hcount <= 480) | (int2.hcount >= 528 & int2.hcount <= 960)) & int2.vcount >= 144 & int2.vcount <= 576)
+           else if(int2.hcount%32 == 0 & ((int2.hcount >= 96 & int2.hcount <= 416) | (int2.hcount >= 608 & int2.hcount <= 928)) & int2.vcount >= 192 & int2.vcount <= 512)
                  rgb_nxt = 12'h0_0_0;
  
-           else if(int2.vcount%48 == 0 & ((int2.hcount >= 48 & int2.hcount <= 480) | (int2.hcount >= 528 & int2.hcount <= 960)) & int2.vcount >= 144 & int2.vcount <= 576)
+           else if(int2.vcount%32 == 0 & ((int2.hcount >= 96 & int2.hcount <= 416) | (int2.hcount >= 608 & int2.hcount <= 928)) & int2.vcount >= 192 & int2.vcount <= 512)
                  rgb_nxt = 12'h0_0_0;
  
  
          // POLA PLANSZY 48PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-             else if ((int2.hcount >= 48 & int2.hcount < 480 & int2.vcount >= 144 & int2.vcount < 576))
+             else if ((int2.hcount >= 96 & int2.hcount < 416 & int2.vcount >= 192 & int2.vcount < 512))
                  rgb_nxt = LIGHT_COLOR;
         
-             else if ((int2.hcount >= 528 & int2.hcount < 960 & int2.vcount >= 144 & int2.vcount < 576))
+             else if ((int2.hcount >= 608 & int2.hcount < 928 & int2.vcount >= 192 & int2.vcount < 512))
                  rgb_nxt = DARK_COLOR;
          // OBRAMOWIANIE PLANSZY 20PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                  //else if ((int2.hcount >= 29 & int2.hcount <= 45) & int2.vcount >= 164 & int2.vcount <= 601)
