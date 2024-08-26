@@ -2,23 +2,23 @@
 // Company : AGH University of Krakow
 // Create Date : 24.07.2024
 // Designers Name : Tomasz Ochmanek & Jan Panek
-// Module Name : draw_ship
+// Module Name : draw_hit
 // Project Name : UEC2_PROJEKT_STATKI
 // Target Devices : BASYS3
 // 
-// Description : Moduł odpowiedzialny za rysowanie statówk.
+// Description : Moduł odpowiedzialny za oznaczanie trafien
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 `timescale 1 ns / 1 ps
 
-module draw_ship 
+module draw_hit 
 (
     input  logic clk,
     input  logic rst,
-    input  logic [31:0]  ship_pixels,
-    output logic [6:0]   ship_xy_host,
-    output logic [6:0]   ship_xy_guest,
-    output logic [4:0]   ship_line,
+    input  logic [31:0]  hit_pixels,
+    output logic [6:0]   hit_xy_host,
+    output logic [6:0]   hit_xy_guest,
+    output logic [4:0]   hit_line,
     vga_if.in  vga_in,
     vga_if.out vga_out
 );
@@ -31,9 +31,9 @@ vga_if int1();
 vga_if int2();
 
 logic [11:0]   rgb_nxt;
-logic [10:0]   ship_xy_host_buf;
-logic [10:0]   ship_xy_guest_buf;
-logic [10:0]   ship_line_buf;
+logic [10:0]   hit_xy_host_buf;
+logic [10:0]   hit_xy_guest_buf;
+logic [10:0]   hit_line_buf;
 
  // INITIAL LOGIC ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -79,18 +79,18 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
-    ship_line_buf = vga_in.vcount - CHAR_Y_HOST;
-    ship_xy_host_buf = vga_in.hcount - CHAR_X_HOST;
-    ship_xy_guest_buf = vga_in.hcount - CHAR_X_GUEST;
-    ship_xy_host = ship_xy_host_buf[10:5]+ 10*ship_line_buf[8:5];
-    ship_xy_guest = ship_xy_guest_buf[10:5] + 10*ship_line_buf[8:5];
-    ship_line = int1.vcount[4:1] - CHAR_Y_HOST[4:1];
+    hit_line_buf = vga_in.vcount - CHAR_Y_HOST;
+    hit_xy_host_buf = vga_in.hcount - CHAR_X_HOST;
+    hit_xy_guest_buf = vga_in.hcount - CHAR_X_GUEST;
+    hit_xy_host = hit_xy_host_buf[10:5]+ 10*hit_line_buf[8:5];
+    hit_xy_guest = hit_xy_guest_buf[10:5] + 10*hit_line_buf[8:5];
+    hit_line = int1.vcount[4:1] - CHAR_Y_HOST[4:1];
 end
 
 always_comb begin
-    if(((int2.hcount >= CHAR_X_HOST) & (int2.hcount < CHAR_LENGTH + CHAR_X_HOST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))  begin  
+    if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_GUEST) & (int2.vcount <= CHAR_Y_GUEST + CHAR_HEIGHT)))  begin  
         
-        if((ship_pixels[32 - (int2.hcount[10:0] - CHAR_X_HOST)%32] == 1'b1) & (ship_pixels[31 - (int2.hcount[10:0] - CHAR_X_HOST)%32] == 1'b1)) begin    
+        if((hit_pixels[32 - (int2.hcount[10:0] - CHAR_X_GUEST)%32] == 1'b1) & (hit_pixels[31 - (int2.hcount[10:0] - CHAR_X_GUEST)%32] == 1'b1)) begin    
             rgb_nxt = 12'hf_0_0;
         end else begin
             rgb_nxt = int2.rgb;

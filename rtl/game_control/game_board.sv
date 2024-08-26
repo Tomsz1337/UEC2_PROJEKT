@@ -19,7 +19,10 @@ module game_board
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
-        output logic [1:0]  ship_code_guest 
+        output logic [1:0] ship_code_guest,
+        output logic [1:0] board_H [0:9][0:9],
+        output logic [1:0] board_G [0:9][0:9]
+        
     );
     logic [1:0] start_loc;
     logic [1:0] board_host [0:9][0:9];
@@ -30,18 +33,19 @@ module game_board
                 start_loc <= 2'b00;
                 ship_code_host <= 2'b00;
                 ship_code_guest <= 2'b00;
-                board_host[0] <= {2'b01, 2'b11, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00};
-                board_host[1] <= {2'b01, 2'b01, 2'b10, 2'b01, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[2] <= {2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[3] <= {2'b01, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[4] <= {2'b01, 2'b01, 2'b01, 2'b00, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[5] <= {2'b01, 2'b01, 2'b01, 2'b00, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[6] <= {2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00, 2'b01, 2'b01, 2'b01};
-                board_host[7] <= {2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00, 2'b01, 2'b01};
-                board_host[8] <= {2'b01, 2'b01, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
-                board_host[9] <= {2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00, 2'b01, 2'b01, 2'b01};
 
-                board_guest[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[0] <= {2'b01, 2'b00, 2'b00, 2'b10, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[4] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[5] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_host[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+
+                board_guest[0] <= {2'b01, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -50,7 +54,7 @@ module game_board
                 board_guest[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
-                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b01};
 
             end 
             else begin
@@ -81,7 +85,7 @@ module game_board
             
             else begin
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];
-                ship_code_guest <= board_guest[ship_xy_guest[6:3]][ship_xy_guest[3:0]];
+                ship_code_guest <= board_guest[ship_xy_guest/10][ship_xy_guest%10];
             end
 
             end
