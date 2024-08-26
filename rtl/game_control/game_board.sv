@@ -30,7 +30,7 @@ module game_board
                 start_loc <= 2'b00;
                 ship_code_host <= 2'b00;
                 ship_code_guest <= 2'b00;
-                board_host[0] <= {2'b00, 2'b11, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00};
+                board_host[0] <= {2'b01, 2'b11, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b00};
                 board_host[1] <= {2'b01, 2'b01, 2'b10, 2'b01, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
                 board_host[2] <= {2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};
                 board_host[3] <= {2'b01, 2'b00, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01, 2'b01};

@@ -16,7 +16,7 @@
 
  module top_vga 
  (
-     input  logic clk_65,
+     input  logic clk_75,
      input  logic clk_100,
      inout  logic ps2_clk,
      inout  logic ps2_data,
@@ -65,34 +65,34 @@ logic [1:0] ship_code_guest;
  // SUBMODULES ISTANCES /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  vga_timing u_vga_timing (
-     .clk(clk_65),
+     .clk(clk_75),
      .rst,
      .vga_out(vga_tim)
  );
 
 /*bg_letters u_bg_letters(
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .vga_in(vga_tim),
     .char_addr(char_addr)
 );
 
 font_rom u_font_rom(
-    .clk(clk_65),
+    .clk(clk_75),
     .addr(char_addr),
     .char_line_pixels(char_pixels)
 );
 */
 
 draw_bg u_draw_bg (
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .vga_in(vga_tim),
     .vga_out(vga_bg)
 );
 
 draw_ship u_draw_ship (
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .ship_xy_guest(ship_xy_guest),
     .ship_xy_host(ship_xy_host),
@@ -103,7 +103,7 @@ draw_ship u_draw_ship (
 );
 
 game_board u_game_board(
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .ship_xy_guest(ship_xy_guest),
     .ship_xy_host(ship_xy_host),
@@ -118,7 +118,7 @@ always_comb begin
 end
 
 mouse_pos u_mouse_pos(
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .LMB(mouse_left),
     .mouse_xpos(xpos_buf_out),
@@ -147,13 +147,13 @@ MouseCtl u_MouseCtl(
     .setmax_y('0)
     );
 
-always_ff @(posedge clk_65) begin
+always_ff @(posedge clk_75) begin
     xpos_buf_out <= xpos_buf_in;
     ypos_buf_out <= ypos_buf_in;
 end
 
 draw_mouse u_draw_mouse(
-    .clk(clk_65),
+    .clk(clk_75),
     .rst,
     .vga_in(draw_out),
     .vga_out(mouse_out),
@@ -162,7 +162,7 @@ draw_mouse u_draw_mouse(
 );
 
 ship_rom u_ship_rom (
-    .clk(clk_65),
+    .clk(clk_75),
     .addres(addres),
     .ship_line_pixels_out(ship_line_pixels)
 );
