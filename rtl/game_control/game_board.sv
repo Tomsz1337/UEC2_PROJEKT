@@ -45,7 +45,7 @@ module game_board
                 board_host[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
-                board_guest[0] <= {2'b01, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[0] <= {2'b10, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -54,7 +54,7 @@ module game_board
                 board_guest[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
-                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b01};
+                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b10};
 
             end 
             else begin
@@ -64,16 +64,11 @@ module game_board
                         if (place == 1) begin
                             board_host[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b01;
                         end
-                        start_loc <= 2'b00;
+                        start_loc <= 2'b10;
                     end
                 end
-                else if (start == 2'b10) begin
-                    for (logic i = 0; i < 4; i++) begin
-                        if (place == 1) begin
-                            board_guest[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b01;
-                        end
-                    end
-                end 
+            
+            
                 else if (start == 2'b00) begin
                     if(board_guest[mouse_pos[5:3]][mouse_pos[2:0]]  == 2'b01 && place == 1)  begin
                         board_guest[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b10;
