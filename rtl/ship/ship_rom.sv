@@ -15,17 +15,22 @@ module ship_rom
     (
         input  logic   clk,
         input  logic  [6:0] addres,
-        output logic  [31:0] ship_line_pixels_out   // pixels of the figure line //
+        input  logic  [6:0] addres_guest,
+        output logic  [31:0] ship_line_pixels_out,
+        output logic  [31:0] ship_line_pixels_out_guest   // pixels of the figure line //
     );
 
     // SIGNAL DECLARATION //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     logic [31:0] data;
+    logic [31:0] data_guest;
 
     // BODY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     always_ff @(posedge clk) begin
         ship_line_pixels_out <= data;
+        ship_line_pixels_out_guest <= data_guest;
+
     end
     
     always_comb begin
@@ -105,6 +110,86 @@ module ship_rom
             7'h6d: data = 32'h07FFFFE0;
             7'h6e: data = 32'h00000000;
             7'h6f: data = 32'h00000000;
+            
+
+            
+        endcase
+        case (addres_guest)
+            //////////puste pole
+            7'h00: data_guest = 32'h00000000;  //0100000
+            7'h01: data_guest = 32'h00000000;
+            7'h02: data_guest = 32'h00000000;
+            7'h03: data_guest = 32'h00000000;
+            7'h04: data_guest = 32'h00000000;
+            7'h05: data_guest = 32'h00000000;
+            7'h06: data_guest = 32'h00000000;
+            7'h07: data_guest = 32'h00000000;
+            7'h08: data_guest = 32'h00000000;
+            7'h09: data_guest = 32'h00000000;
+            7'h0a: data_guest = 32'h00000000;
+            7'h0b: data_guest = 32'h00000000;
+            7'h0c: data_guest = 32'h00000000;
+            7'h0d: data_guest = 32'h00000000;
+            7'h0e: data_guest = 32'h00000000;
+            7'h0f: data_guest = 32'h00000000;
+            
+
+            /////////////////statek
+            7'h20: data_guest = 32'hffffffff; 
+            7'h21: data_guest = 32'hffffffff;
+            7'h22: data_guest = 32'hffffffff;
+            7'h23: data_guest = 32'hffffffff;
+            7'h24: data_guest = 32'hffffffff;
+            7'h25: data_guest = 32'hffffffff;
+            7'h26: data_guest = 32'hffffffff;
+            7'h27: data_guest = 32'hffffffff;
+            7'h28: data_guest = 32'hffffffff;
+            7'h29: data_guest = 32'hffffffff;
+            7'h2a: data_guest = 32'hffffffff;
+            7'h2b: data_guest = 32'hffffffff;
+            7'h2c: data_guest = 32'hffffffff;
+            7'h2d: data_guest = 32'hffffffff;
+            7'h2e: data_guest = 32'hffffffff;
+            7'h2f: data_guest = 32'hffffffff;
+            
+
+
+            //////////////TRFIONY
+            7'h40: data_guest = 32'hFFFFFFFF; //100.0000
+            7'h41: data_guest = 32'hF38001CF;
+            7'h42: data_guest = 32'hF1C0038F;
+            7'h43: data_guest = 32'hF0E0070F;
+            7'h44: data_guest = 32'hF0700E0F;
+            7'h45: data_guest = 32'hF0381C0F;
+            7'h46: data_guest = 32'hF01C380F;
+            7'h47: data_guest = 32'hF00E700F;
+            7'h48: data_guest = 32'hF003C00F;
+            7'h49: data_guest = 32'hF00E700F;
+            7'h4a: data_guest = 32'hF01C380F;
+            7'h4b: data_guest = 32'hF0381C0F;
+            7'h4c: data_guest = 32'hF0700E0F;
+            7'h4d: data_guest = 32'hF0E0070F;
+            7'h4e: data_guest = 32'hF1C0038F;
+            7'h4f: data_guest = 32'hFFFFFFFF;
+            
+
+            ////////////////////////CHYBIONY
+            7'h60: data_guest = 32'h00000000; 
+            7'h61: data_guest = 32'h00000000;
+            7'h62: data_guest = 32'h07FFFFE0;
+            7'h63: data_guest = 32'h070000E0;
+            7'h64: data_guest = 32'h070000E0;
+            7'h65: data_guest = 32'h070000E0;
+            7'h66: data_guest = 32'h070000E0;
+            7'h67: data_guest = 32'h070000E0;
+            7'h68: data_guest = 32'h070000E0;
+            7'h69: data_guest = 32'h070000E0;
+            7'h6a: data_guest = 32'h070000E0;
+            7'h6b: data_guest = 32'h070000E0;
+            7'h6c: data_guest = 32'h070000E0;
+            7'h6d: data_guest = 32'h07FFFFE0;
+            7'h6e: data_guest = 32'h00000000;
+            7'h6f: data_guest = 32'h00000000;
             
 
             
