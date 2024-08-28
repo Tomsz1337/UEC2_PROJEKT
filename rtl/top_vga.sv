@@ -122,15 +122,7 @@ always_comb begin
     addres_guest = {ship_code_guest, ship_line};
 end
 
-mouse_pos u_mouse_pos(
-    .clk(clk_75),
-    .rst,
-    .LMB(mouse_left),
-    .mouse_xpos(xpos_buf_out),
-    .mouse_ypos(ypos_buf_out),
-    .mouse_pos(mouse_pos),
-    .place(place)
-);
+
 
 MouseCtl u_MouseCtl(
     .clk(clk_100),

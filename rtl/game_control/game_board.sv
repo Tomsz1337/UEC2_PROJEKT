@@ -57,26 +57,10 @@ module game_board
                 board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b10};
 
             end 
-            else begin
-                start_loc <= start;
-                if (start == 2'b01) begin
-                    for (logic i = 0; i < 4; i++) begin
-                        if (place == 1) begin
-                            board_host[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b01;
-                        end
-                        start_loc <= 2'b10;
-                    end
-                end
             
             
-                else if (start == 2'b00) begin
-                    if(board_guest[mouse_pos[5:3]][mouse_pos[2:0]]  == 2'b01 && place == 1)  begin
-                        board_guest[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b10;
-                    end
-                    else if (board_guest[mouse_pos[5:3]][mouse_pos[2:0]]  == 2'b00 && place == 1) begin
-                        board_guest[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b11;
-                    end
-                end
+            
+               
             
             else begin
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];
@@ -84,7 +68,7 @@ module game_board
             end
 
             end
-        end
+        
             
 endmodule
     
