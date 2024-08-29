@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-29 20:28:33
+Created: 2024-08-29 21:50:18
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -15,7 +15,6 @@ WARNING: [Synth 8-87] always_comb on 'pick_place_reg' did not result in combinat
 WARNING: [Synth 8-3848] Net hit_buf in module/entity logic_ctl does not have driver. [rtl/game_control/logic_ctl.sv:39]
 WARNING: [Synth 8-3848] Net answer_buf in module/entity logic_ctl does not have driver. [rtl/game_control/logic_ctl.sv:40]
 WARNING: [Synth 8-3848] Net pick_place_nxt in module/entity logic_ctl does not have driver. [rtl/game_control/logic_ctl.sv:41]
-WARNING: [Synth 8-689] width (6) of port connection 'mouse_position' does not match port width (8) of module 'logic_ctl' [rtl/top_vga.sv:111]
 WARNING: [Synth 8-5856] 3D RAM board_host_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-5856] 3D RAM board_guest_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/Mouse/MouseCtl.vhd:450]

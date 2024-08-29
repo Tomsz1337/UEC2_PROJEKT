@@ -40,7 +40,7 @@
  //logic  [11:0] ypos;
  logic  mouse_left;
  logic  place;
- logic  [5:0] mouse_pos;
+ logic  [7:0] mouse_pos;
  logic  [11:0] xpos_buf_in;
  logic  [11:0] ypos_buf_in;
  logic  [11:0] xpos_buf_out;
