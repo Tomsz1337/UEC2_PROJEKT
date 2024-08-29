@@ -34,12 +34,12 @@ typedef enum bit [1:0]
 } STATE_T;
 
 STATE_T state, state_nxt;
-logic LMB;
+
 logic ship_count_buf;
 logic hit_buf;
 logic answer_buf;
 logic pick_place_nxt;
-logic [5:0] pick_position;
+logic [7:0] pick_position;
 logic your_turn;
 
 /*always_ff @(posedge begin_turn)begin
@@ -64,7 +64,7 @@ always_ff @(posedge clk) begin : xypos_blk
                // else begin
                     pick_place <= pick_place_nxt;
                     
-                    if(LMB == '1) begin
+                    if(mouse_left == '1) begin
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-608)/32;
                     end
@@ -76,7 +76,7 @@ end
 
 always_comb begin : state_nxt_blk
     case(state)
-        IDLE:           state_nxt = LMB == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
+        IDLE:           state_nxt = mouse_left == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count_buf == 10 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;

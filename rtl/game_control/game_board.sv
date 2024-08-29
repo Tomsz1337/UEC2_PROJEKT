@@ -14,7 +14,7 @@ module game_board
         input logic clk,                           // Zegar
         input logic rst,                         
         input logic pick_ship,
-        input logic [5:0] mouse_pos,
+        input logic [7:0] mouse_pos,
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
@@ -55,9 +55,9 @@ module game_board
 
             end 
             
-            else if(pick_ship == 1 && board_host[mouse_pos[5:3]][mouse_pos[2:0]] == 2'b00 && ship_count <= 10) begin
+            else if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
                 
-                board_host[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b01;
+                board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
                 ship_count ++;
             end
             
