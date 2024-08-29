@@ -64,14 +64,14 @@ always_ff @(posedge clk) begin : xypos_blk
                // else begin
                     pick_place <= pick_place_nxt;
                     
-                    if(mouse_left == '1 && mouse_xpos >= 608) begin
+                    if(mouse_left == '1 ) begin
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-608)/32;
                     end
-                    else if (mouse_left == '1 && mouse_xpos <= 416)
+                    /*else if (mouse_left == '1 && mouse_xpos <= 416)
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-96)/32;
-                    
+                    */
             end
         end
 end
