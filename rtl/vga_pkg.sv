@@ -35,7 +35,7 @@
     localparam CHAR_X_HOST = 96;
     localparam CHAR_Y_HOST = 193;
     localparam CHAR_X_GUEST = 608;
-    localparam CHAR_Y_GUEST = 192;
+    localparam CHAR_Y_GUEST = 193;
     localparam CHAR_SIZE = 32;
     
     endpackage

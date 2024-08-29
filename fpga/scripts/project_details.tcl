@@ -38,11 +38,11 @@ set sv_files {
     ../rtl/draw_bg.sv
     ../rtl/top_vga.sv
     ../rtl/vga_if.sv
-    ../rtl/Mouse/mouse_pos.sv
     ../rtl/Mouse/draw_mouse.sv
     ../rtl/game_control/game_board.sv
-    
-   
+    ../rtl/game_control/logic_ctl.sv
+    ../rtl/ship/draw_ship.sv
+    ../rtl/ship/ship_rom.sv
     ../rtl/delay.sv
     rtl/top_vga_basys3.sv
 }

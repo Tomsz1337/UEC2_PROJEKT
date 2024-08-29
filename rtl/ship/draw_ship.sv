@@ -16,6 +16,7 @@ module draw_ship
     input  logic clk,
     input  logic rst,
     input  logic [31:0]  ship_pixels,
+    input  logic [31:0]  ship_pixels_guest,
     output logic [6:0]   ship_xy_host,
     output logic [6:0]   ship_xy_guest,
     output logic [4:0]   ship_line,
@@ -83,32 +84,30 @@ always_comb begin
     ship_xy_host_buf = vga_in.hcount - CHAR_X_HOST;
     ship_xy_guest_buf = vga_in.hcount - CHAR_X_GUEST;
     ship_xy_host = ship_xy_host_buf[10:5]+ 10*ship_line_buf[8:5];
-    ship_xy_guest = ship_xy_guest_buf[10:5] + ship_line_buf[10:5];
+    ship_xy_guest = ship_xy_guest_buf[10:5] + 10*ship_line_buf[8:5];
     ship_line = int1.vcount[4:1] - CHAR_Y_HOST[4:1];
 end
 
 always_comb begin
-    if(((int2.hcount >= CHAR_X_HOST) & (int2.hcount < CHAR_LENGTH + CHAR_X_HOST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
+    if(((int2.hcount >= CHAR_X_HOST) & (int2.hcount < CHAR_LENGTH + CHAR_X_HOST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))  begin  
         
         if((ship_pixels[32 - (int2.hcount[10:0] - CHAR_X_HOST)%32] == 1'b1) & (ship_pixels[31 - (int2.hcount[10:0] - CHAR_X_HOST)%32] == 1'b1)) begin    
             rgb_nxt = 12'hf_0_0;
         end else begin
             rgb_nxt = int2.rgb;
         end
-        /*else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_HOST) & (int2.vcount <= CHAR_Y_HOST + CHAR_HEIGHT)))    
-        if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b0) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b1)) begin    
+    end
+    else if(((int2.hcount >= CHAR_X_GUEST) & (int2.hcount < CHAR_LENGTH + CHAR_X_GUEST) & (int2.vcount >= CHAR_Y_GUEST) & (int2.vcount <= CHAR_Y_GUEST + CHAR_HEIGHT))) begin   
+        if((ship_pixels_guest[32 - (int2.hcount[10:0] - CHAR_X_GUEST)%32] == 1'b1) & (ship_pixels_guest[32 - (int2.hcount[10:0] - CHAR_X_GUEST)%32] == 1'b1)) begin    
+            rgb_nxt = 12'hf_0_0;
+        end else begin 
             rgb_nxt = int2.rgb;
-        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1] - CHAR_X_GUEST)%48] == 1'b0)) begin    
-            rgb_nxt = int2.rgb;
-        end else if((ship_pixels[47 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1) & (ship_pixels[46 - (int2.hcount[10:1]*2 - CHAR_X_GUEST)%48] == 1'b1)) begin    
-            rgb_nxt = int2.rgb;
-        end else begin
-            rgb_nxt = int2.rgb; 
         end
-      */
+   
+        
+    end
     else begin
         rgb_nxt = int2.rgb;
     end
-
 end
 endmodule
