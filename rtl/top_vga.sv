@@ -21,6 +21,8 @@
      inout  logic ps2_clk,
      inout  logic ps2_data,
      input  logic rst,
+     input  logic [7:0] check_in,
+     output logic [7:0] check_out,
      output logic vs,
      output logic hs,
      output logic [3:0] r,
@@ -112,6 +114,8 @@ logic_ctl u_logic_ctl(
     .mouse_xpos(xpos_buf_out),
     .mouse_ypos(ypos_buf_out),
     .pick_ship(pick_ship),
+    .check_in(check_in[7:0]),
+    .check_out(check_out[7:0]),
     .vga_in(draw_out)
 );
 game_board u_game_board(

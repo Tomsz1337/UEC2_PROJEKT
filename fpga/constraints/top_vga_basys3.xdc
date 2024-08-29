@@ -151,57 +151,57 @@ set_property PACKAGE_PIN J1 [get_ports {JA1}]
 
 ##Pmod Header JB
 ##Sch name = JB1
-#set_property PACKAGE_PIN A14 [get_ports {JB[0]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[0]}]
+set_property PACKAGE_PIN A14 [get_ports {JB1}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB1}]
 ##Sch name = JB2
-#set_property PACKAGE_PIN A16 [get_ports {JB[1]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[1]}]
+set_property PACKAGE_PIN A16 [get_ports {JB2}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB2}]
 ##Sch name = JB3
-#set_property PACKAGE_PIN B15 [get_ports {JB[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[2]}]
+set_property PACKAGE_PIN B15 [get_ports {JB3}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB3}]
 ##Sch name = JB4
-#set_property PACKAGE_PIN B16 [get_ports {JB[3]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[3]}]
+set_property PACKAGE_PIN B16 [get_ports {JB4}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB4}]
 ##Sch name = JB7
-#set_property PACKAGE_PIN A15 [get_ports {JB[4]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[4]}]
+set_property PACKAGE_PIN A15 [get_ports {JB5}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB5}]
 ##Sch name = JB8
-#set_property PACKAGE_PIN A17 [get_ports {JB[5]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[5]}]
+set_property PACKAGE_PIN A17 [get_ports {JB6}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB6}]
 ##Sch name = JB9
-#set_property PACKAGE_PIN C15 [get_ports {JB[6]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[6]}]
+set_property PACKAGE_PIN C15 [get_ports {JB7}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB7}]
 ##Sch name = JB10
-#set_property PACKAGE_PIN C16 [get_ports {JB[7]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JB[7]}]
+set_property PACKAGE_PIN C16 [get_ports {JB8}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB8}]
 
 
 
 ##Pmod Header JC
 ##Sch name = JC1
-#set_property PACKAGE_PIN K17 [get_ports {JC[0]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[0]}]
+set_property PACKAGE_PIN K17 [get_ports {JC1}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC1}]
 ##Sch name = JC2
-#set_property PACKAGE_PIN M18 [get_ports {JC[1]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[1]}]
+set_property PACKAGE_PIN M18 [get_ports {JC2}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC2}]
 ##Sch name = JC3
-#set_property PACKAGE_PIN N17 [get_ports {JC[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[2]}]
+set_property PACKAGE_PIN N17 [get_ports {JC3}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC3}]
 ##Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {JC[3]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[3]}]
+set_property PACKAGE_PIN P18 [get_ports {JC4}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC4}]
 ##Sch name = JC7
-#set_property PACKAGE_PIN L17 [get_ports {JC[4]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
+set_property PACKAGE_PIN L17 [get_ports {JC5}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC5}]
 ##Sch name = JC8
-#set_property PACKAGE_PIN M19 [get_ports {JC[5]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[5]}]
+set_property PACKAGE_PIN M19 [get_ports {JC6}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC6}]
 ##Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {JC[6]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[6]}]
+set_property PACKAGE_PIN P17 [get_ports {JC7}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
 ##Sch name = JC10
-#set_property PACKAGE_PIN R18 [get_ports {JC[7]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+set_property PACKAGE_PIN R18 [get_ports {JC8}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC8}]
 
 
 ##Pmod Header JXADC
@@ -282,14 +282,14 @@ set_property PACKAGE_PIN B17 [get_ports PS2Data]
 ##Quad SPI Flash
 ##Note that CCLK_0 cannot be placed in 7 series devices. You can access it using the
 ##STARTUPE2 primitive.
-#set_property PACKAGE_PIN D18 [get_ports {QspiDB[0]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB[0]}]
-#set_property PACKAGE_PIN D19 [get_ports {QspiDB[1]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB[1]}]
-#set_property PACKAGE_PIN G18 [get_ports {QspiDB[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB[2]}]
-#set_property PACKAGE_PIN F18 [get_ports {QspiDB[3]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB[3]}]
+#set_property PACKAGE_PIN D18 [get_ports {QspiDB}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB}]
+#set_property PACKAGE_PIN D19 [get_ports {QspiDB}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB}]
+#set_property PACKAGE_PIN G18 [get_ports {QspiDB}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB}]
+#set_property PACKAGE_PIN F18 [get_ports {QspiDB}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB}]
 #set_property PACKAGE_PIN K19 [get_ports QspiCSn]
 	#set_property IOSTANDARD LVCMOS33 [get_ports QspiCSn]
 

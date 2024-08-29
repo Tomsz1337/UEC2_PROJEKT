@@ -42,7 +42,7 @@ module game_board
                 board_host[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
-                board_guest[0] <= {2'b10, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -51,18 +51,23 @@ module game_board
                 board_guest[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
-                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b10};
+                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
             end 
             
-            else if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
+            else if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 9) begin
                 
                 board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
                 ship_count ++;
             end
             
-               
-            
+            else if(your_turn == 1) begin
+                board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= answer;
+            end
+            else if (your_turn == 0) begin
+                hit <= board_host[mouse_guest[7:4]][mouse_guest[3:0]] ;
+                msg <= hit;
+            end
             else begin
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];
                 ship_code_guest <= board_guest[ship_xy_guest/10][ship_xy_guest%10];
