@@ -51,7 +51,7 @@
  logic  [7:0]  char_pixels;
  logic [6:0] addres;
  logic [6:0] addres_guest;
-
+logic pick_ship;
 logic [4:0] ship_line;
 logic [1:0] ship_code_host;
 logic [1:0] ship_code_guest;
@@ -104,7 +104,16 @@ draw_ship u_draw_ship (
     .ship_pixels(ship_line_pixels),
     .ship_pixels_guest(ship_line_pixels_guest)
 );
-
+logic_ctl u_logic_ctl(
+    .clk(clk_75),
+    .rst,
+    .mouse_left(mouse_left),
+    .mouse_position(mouse_pos),
+    .mouse_xpos(xpos_buf_out),
+    .mouse_ypos(ypos_buf_out),
+    .pick_ship(pick_ship),
+    .vga_in(draw_out)
+);
 game_board u_game_board(
     .clk(clk_75),
     .rst,
@@ -113,7 +122,7 @@ game_board u_game_board(
     .ship_code_host(ship_code_host),
     .ship_code_guest(ship_code_guest),
     .mouse_pos(mouse_pos),
-    .place(place)
+    .pick_ship(pick_ship)
 );
 
 always_comb begin

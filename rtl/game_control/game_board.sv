@@ -12,25 +12,22 @@
 module game_board 
     (
         input logic clk,                           // Zegar
-        input logic rst,
-        input logic [1:0] start,                           // Reset
-        input logic place,
+        input logic rst,                         
+        input logic pick_ship,
         input logic [5:0] mouse_pos,
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
-        output logic [1:0] ship_code_guest,
-        output logic [1:0] board_H [0:9][0:9],
-        output logic [1:0] board_G [0:9][0:9]
+        output logic [1:0] ship_code_guest 
         
     );
-    logic [1:0] start_loc;
+    
     logic [1:0] board_host [0:9][0:9];
     logic [1:0] board_guest [0:9][0:9];
-
+    logic [3:0] ship_count;
         always_ff @(posedge clk, posedge rst) begin
             if (rst) begin
-                start_loc <= 2'b00;
+                ship_count <= 4'b0000;
                 ship_code_host <= 2'b00;
                 ship_code_guest <= 2'b00;
 
@@ -58,7 +55,11 @@ module game_board
 
             end 
             
-            
+            else if(pick_ship == 1 && board_host[mouse_pos[5:3]][mouse_pos[2:0]] == 2'b00 && ship_count <= 10) begin
+                
+                board_host[mouse_pos[5:3]][mouse_pos[2:0]] <= 2'b01;
+                ship_count ++;
+            end
             
                
             

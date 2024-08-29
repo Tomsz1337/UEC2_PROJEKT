@@ -40,6 +40,7 @@ set sv_files {
     ../rtl/vga_if.sv
     ../rtl/Mouse/draw_mouse.sv
     ../rtl/game_control/game_board.sv
+    ../rtl/game_control/logic_ctl.sv
     ../rtl/ship/draw_ship.sv
     ../rtl/ship/ship_rom.sv
     ../rtl/delay.sv
