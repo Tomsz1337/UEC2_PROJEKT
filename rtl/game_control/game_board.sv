@@ -14,19 +14,17 @@ module game_board
         input logic clk,                           // Zegar
         input logic rst,                         
         input logic pick_ship,
-        input logic pick_place,
         input logic [7:0] mouse_pos,
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
-        output logic [1:0] ship_code_guest,
-        output logic [3:0] ship_count
+        output logic [1:0] ship_code_guest 
         
     );
     
     logic [1:0] board_host [0:9][0:9];
     logic [1:0] board_guest [0:9][0:9];
-    
+    logic [3:0] ship_count;
         always_ff @(posedge clk, posedge rst) begin
             if (rst) begin
                 ship_count <= 4'b0000;
@@ -44,7 +42,7 @@ module game_board
                 board_host[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
-                board_guest[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[0] <= {2'b10, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -53,7 +51,7 @@ module game_board
                 board_guest[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
-                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b10};
 
             end 
             
@@ -61,9 +59,6 @@ module game_board
                 
                 board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
                 ship_count ++;
-            end
-            else if(pick_place == 1) begin
-                board_guest[7][7] <= 2'b11;
             end
             
                

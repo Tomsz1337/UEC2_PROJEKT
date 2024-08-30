@@ -16,12 +16,10 @@ import vga_pkg::*; (
     input logic        clk,
     input logic        rst,
     input logic        mouse_left,
-    input logic        start_button,
     input logic [11:0] mouse_xpos,
     input logic [11:0] mouse_ypos,
     input logic        answer,
-    input logic        set_player,
-    input logic [3:0]  ship_count,
+    input logic        start_button,
     output logic [7:0] mouse_position,
     output logic       pick_place,
     output logic       pick_ship,
@@ -38,7 +36,7 @@ typedef enum bit [1:0]
 
 STATE_T state, state_nxt;
 
-logic [3:0] ship_count_buf;
+logic ship_count_buf;
 logic hit_buf;
 logic answer_buf;
 logic pick_place_nxt;
@@ -55,9 +53,8 @@ end*/
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
             state    <= IDLE;
-            //state_led <= 4'b0000;
             mouse_position <= 0;
-            
+            pick_place <= '0;
             your_turn <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
@@ -66,10 +63,12 @@ always_ff @(posedge clk) begin : xypos_blk
                  //   your_turn <= '1;
                 //end 
                // else begin
-                mouse_position[7:4] <= (mouse_ypos-193)/32;
-                mouse_position[3:0] <= (mouse_xpos-96)/32;
-                ship_count_buf <= ship_count;
+                    pick_place <= pick_place_nxt;
                     
+                    if(mouse_left == '1 ) begin
+                        mouse_position[7:4] <= (mouse_ypos-193)/32;
+                        mouse_position[3:0] <= (mouse_xpos-608)/32;
+                    end
                     /*else if (mouse_left == '1 && mouse_xpos <= 416)
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-96)/32;
@@ -96,17 +95,18 @@ always_comb begin : output_blk
         IDLE: begin
             pick_position = 0;
             pick_ship = 0;
-            state_led = 4'b0001;
+            state_led = 4'b1000;
         end
 
         PICK_SHIP: begin
+
             
-            pick_ship = mouse_left;
-            state_led = 4'b0010;
+            pick_ship = 1;
+            state_led = 4'b0100;
         end
 
         WAIT: begin
-            pick_place = 1;
+            pick_place = 0;
 
         end
         TURN: begin
