@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-30 22:54:35
+Created: 2024-08-30 23:06:55
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -17,8 +17,8 @@ WARNING: [Synth 8-3848] Net answer_buf in module/entity logic_ctl does not have 
 WARNING: [Synth 8-3848] Net pick_place_nxt in module/entity logic_ctl does not have driver. [rtl/game_control/logic_ctl.sv:43]
 WARNING: [Synth 8-5856] 3D RAM board_host_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-5856] 3D RAM board_guest_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
-WARNING: [Synth 8-7071] port 'ship_count' of module 'game_board' is unconnected for instance 'u_game_board' [rtl/top_vga.sv:128]
-WARNING: [Synth 8-7023] instance 'u_game_board' of module 'game_board' has 10 connections declared, but only 9 given [rtl/top_vga.sv:128]
+WARNING: [Synth 8-7071] port 'ship_count' of module 'game_board' is unconnected for instance 'u_game_board' [rtl/top_vga.sv:129]
+WARNING: [Synth 8-7023] instance 'u_game_board' of module 'game_board' has 10 connections declared, but only 9 given [rtl/top_vga.sv:129]
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/Mouse/MouseCtl.vhd:450]
 WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/Mouse/MouseCtl.vhd:456]
 WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [rtl/Mouse/MouseCtl.vhd:514]

@@ -61,6 +61,7 @@ logic [1:0] ship_code_guest;
  logic [6:0] ship_xy_host;
  logic [6:0] ship_xy_guest;
 logic [1:0] hit; 
+logic pick_place;
  // SIGNALS ASSIGNMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  assign vs = mouse_out.vsync;
