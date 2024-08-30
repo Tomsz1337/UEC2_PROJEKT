@@ -67,7 +67,7 @@ always_ff @(posedge clk) begin : xypos_blk
                 //end 
                // else begin
                 mouse_position[7:4] <= (mouse_ypos-193)/32;
-                mouse_position[3:0] <= (mouse_xpos-608)/32;
+                mouse_position[3:0] <= (mouse_xpos-96)/32;
                 ship_count_buf <= ship_count;
                     
                     /*else if (mouse_left == '1 && mouse_xpos <= 416)
@@ -101,12 +101,7 @@ always_comb begin : output_blk
 
         PICK_SHIP: begin
             
-            if(mouse_left == 1) begin
-                pick_ship = 1;
-            end
-            else if (mouse_left == 0)begin
-                pick_ship = 0;
-            end
+            pick_ship = mouse_left;
             state_led = 4'b0010;
         end
 

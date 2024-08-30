@@ -63,6 +63,7 @@ logic [1:0] ship_code_guest;
  logic [6:0] ship_xy_guest;
 logic [1:0] hit; 
 logic pick_place;
+logic [3:0] ship_count;
  // SIGNALS ASSIGNMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  assign vs = mouse_out.vsync;
@@ -120,6 +121,7 @@ logic_ctl u_logic_ctl(
     .start_button(start_button),
     .pick_place(pick_place),
     .state_led(led),
+    .ship_count(ship_count),
     //.hit(hit),
     //.answer(check_in[9:8]),
     //.msg(check_out[9:8]),
@@ -137,7 +139,8 @@ game_board u_game_board(
     .ship_code_guest(ship_code_guest),
     .mouse_pos(mouse_pos),
     .pick_ship(pick_ship),
-    .pick_place(pick_place)
+    .pick_place(pick_place),
+    .ship_count(ship_count)
     //.hit(hit),
    // .guest_pos(check_in[7:0]),
    // .answer(check_in[9:8]),
