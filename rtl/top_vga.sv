@@ -123,6 +123,7 @@ logic_ctl u_logic_ctl(
     .pick_place(pick_place),
     .state_led(led),
     .ship_count(ship_count),
+    .board_addres(board_addres),
     //.hit(hit),
     //.answer(check_in[9:8]),
     //.msg(check_out[9:8]),

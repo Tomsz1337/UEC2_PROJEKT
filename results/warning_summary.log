@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 01:45:09
+Created: 2024-08-31 01:53:19
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -67,7 +67,6 @@ WARNING: [Synth 8-7129] Port check_out[3] in module top_vga is either unconnecte
 WARNING: [Synth 8-7129] Port check_out[2] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[1] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[0] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port board_addres in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_in[9] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_in[8] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_in[7] in module top_vga is either unconnected or has no load
@@ -130,7 +129,7 @@ WARNING: [Synth 8-7129] Port check_out[4] in module top_vga is either unconnecte
 WARNING: [Synth 8-7129] Port check_out[3] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[2] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[1] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_logic_ctl/FSM_onehot_state_reg[3]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-7129] Port check_out[0] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_logic_ctl/pick_place_reg) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_ship_rom/data_reg[12]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_ship_rom/data_reg[11]) is unused and will be removed from module top_vga_basys3.

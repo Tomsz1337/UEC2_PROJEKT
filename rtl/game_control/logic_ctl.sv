@@ -54,7 +54,7 @@ end*/
 
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
-            player <= board_addres;
+            player <= '0;
             state    <= IDLE;
             mouse_position <= 0;
             pick_place <= '0;
@@ -62,7 +62,7 @@ always_ff @(posedge clk) begin : xypos_blk
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
                 
-                
+                player <= board_addres;
                 state    <= state_nxt;
                 //if(player_already_set == 0 & set_player == 1)begin
                  //   your_turn <= '1;
@@ -84,7 +84,7 @@ end
 always_comb begin : state_nxt_blk
     case(state)
         //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
-        PICK_SHIP:      state_nxt = ship_count == 10 ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
+        PICK_SHIP:      state_nxt = ship_count == 11 ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
         
