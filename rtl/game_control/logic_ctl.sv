@@ -97,9 +97,12 @@ always_comb begin : output_blk
         end
 
         PICK_SHIP: begin
-
-            
-            pick_ship = mouse_left;
+            if(mouse_left == 1) begin
+                pick_ship = 1;
+            end
+            else begin
+                pick_ship = 0;
+            end
             state_led = 4'b0100;
         end
 
