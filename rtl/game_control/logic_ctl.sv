@@ -16,6 +16,7 @@ import vga_pkg::*; (
     input logic        clk,
     input logic        rst,
     input logic        mouse_left,
+    input logic        start_button,
     input logic [11:0] mouse_xpos,
     input logic [11:0] mouse_ypos,
     input logic        answer,
@@ -79,7 +80,7 @@ end
 
 always_comb begin : state_nxt_blk
     case(state)
-        IDLE:           state_nxt = mouse_left == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
+        IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count_buf == 10 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
