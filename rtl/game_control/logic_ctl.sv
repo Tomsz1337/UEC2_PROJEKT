@@ -104,7 +104,7 @@ always_comb begin : output_blk
             if(mouse_left == 1) begin
                 pick_ship = 1;
             end
-            else begin
+            else if (mouse_left == 0)begin
                 pick_ship = 0;
             end
             state_led = 4'b0010;
