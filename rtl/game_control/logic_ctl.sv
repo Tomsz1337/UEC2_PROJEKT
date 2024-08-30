@@ -25,6 +25,7 @@ import vga_pkg::*; (
     output logic [7:0] mouse_position,
     output logic       pick_place,
     output logic       pick_ship,
+    output logic [3:0] state_led,
     vga_if.in vga_in
 );
 typedef enum bit [1:0]
@@ -54,8 +55,9 @@ end*/
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
             state    <= IDLE;
+            //state_led <= 4'b0000;
             mouse_position <= 0;
-            pick_place <= '0;
+            
             your_turn <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
@@ -64,7 +66,7 @@ always_ff @(posedge clk) begin : xypos_blk
                  //   your_turn <= '1;
                 //end 
                // else begin
-                    pick_place <= pick_place_nxt;
+                    
                     ship_count_buf <= ship_count;
                     if(mouse_left == '1 ) begin
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
@@ -96,9 +98,11 @@ always_comb begin : output_blk
         IDLE: begin
             pick_position = 0;
             pick_ship = 0;
+            state_led = 4'b0001;
         end
 
         PICK_SHIP: begin
+            state_led = 4'b0010;
             if(mouse_left) begin
                 pick_ship = 1;
             end

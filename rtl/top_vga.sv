@@ -26,6 +26,7 @@
      output logic [9:0] check_out,
      output logic vs,
      output logic hs,
+     output logic [3:0] led,
      output logic [3:0] r,
      output logic [3:0] g,
      output logic [3:0] b
@@ -118,6 +119,7 @@ logic_ctl u_logic_ctl(
     .pick_ship(pick_ship),
     .start_button(start_button),
     .pick_place(pick_place),
+    .state_led(led),
     //.hit(hit),
     //.answer(check_in[9:8]),
     //.msg(check_out[9:8]),
