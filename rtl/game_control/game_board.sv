@@ -14,11 +14,15 @@ module game_board
         input logic clk,                           // Zegar
         input logic rst,                         
         input logic pick_ship,
+        input logic your_turn,
+        input logic [1:0] answer,
         input logic [7:0] mouse_pos,
+        input logic [7:0] guest_pos,
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
-        output logic [1:0] ship_code_guest 
+        output logic [1:0] ship_code_guest,
+        output logic [1:0] hit 
         
     );
     
@@ -30,6 +34,7 @@ module game_board
                 ship_count <= 4'b0000;
                 ship_code_host <= 2'b00;
                 ship_code_guest <= 2'b00;
+                hit <= 2'b00;
 
                 board_host[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -65,8 +70,13 @@ module game_board
                 board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= answer;
             end
             else if (your_turn == 0) begin
-                hit <= board_host[mouse_guest[7:4]][mouse_guest[3:0]] ;
-                msg <= hit;
+                hit <= board_host[guest_pos[7:4]][guest_pos[3:0]] ;
+                if (board_host[guest_pos[7:4]][guest_pos[3:0]] == 2'b00) begin
+                    board_host[guest_pos[7:4]][guest_pos[3:0]] <= 2'b11;
+                end
+                else if(board_host[guest_pos[7:4]][guest_pos[3:0]] == 2'b01) begin
+                    board_host[guest_pos[7:4]][guest_pos[3:0]] <= 2'b10;
+                end
             end
             else begin
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];

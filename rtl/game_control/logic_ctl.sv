@@ -18,13 +18,16 @@ import vga_pkg::*; (
     input logic        mouse_left,
     input logic [11:0] mouse_xpos,
     input logic [11:0] mouse_ypos,
+    input logic [1:0]  hit,
     input logic [1:0]  answer,
+    output logic [1:0] msg,
     input logic        set_player,
     input logic [7:0]  check_in,
     output logic [7:0] check_out,
     output logic [7:0] mouse_position,
     output logic       pick_place,
     output logic       pick_ship,
+    output logic       your_turn,
     vga_if.in vga_in
 );
 typedef enum bit [1:0]
@@ -42,7 +45,7 @@ logic hit_buf;
 logic [1:0] answer_buf;
 logic pick_place_nxt;
 logic [7:0] pick_position;
-logic your_turn;
+
 
 /*always_ff @(posedge begin_turn)begin
     your_turn <= '1;
@@ -70,16 +73,34 @@ always_ff @(posedge clk) begin : xypos_blk
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-608)/32;
                     end
-                    if (your_turn == '1 ) begin
-                        check_out <= mouse_position;
+                    if(your_turn == '1 ) begin
+                        if(mouse_left == '1)begin
+                            check_out <= mouse_position;
+                        end
+                        else begin
+                            check_out <= 8'b00000000;
+                        end
                         if(answer != 2'b00) begin
                             your_turn <= '0;
-                            answer_buf <= answer;
                         end
                         else begin
                             your_turn <= '1;
                         end
                     end
+                    if(your_turn == '0) begin
+                        if(check_in != 8'b00000000) 
+                            if(hit == 2'b00) begin
+                                msg <= 2'b11;
+                            end
+                            else if(hit == 2'b01) begin
+                                msg <= 2'b10;
+                            end
+                                your_turn <= '1;
+                        end
+                        else begin
+                            your_turn <= '0;
+                        end
+                    
             end
         end
 end
@@ -90,7 +111,7 @@ always_comb begin : state_nxt_blk
         IDLE:           state_nxt = mouse_left == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count_buf == 9 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
-        TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
+        TURN:           state_nxt = your_turn == '0 ? WAIT : TURN;
         
         default:    state_nxt = IDLE;
     endcase  

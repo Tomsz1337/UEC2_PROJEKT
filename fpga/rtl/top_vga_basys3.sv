@@ -24,8 +24,8 @@ module top_vga_basys3 (
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    input  wire JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8,
-    output wire JC1, JC2, JC3, JC4, JC5, JC6, JC7, JC8
+    input  wire JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8, JA1, JA2,
+    output wire JC1, JC2, JC3, JC4, JC5, JC6, JC7, JC8, JA3, JA4
 );
 
 
@@ -34,8 +34,8 @@ module top_vga_basys3 (
  */
 
 wire locked;
-wire [7:0] check_in;
-wire [7:0] check_out;
+wire [9:0] check_in;
+wire [9:0] check_out;
 wire clk_100;
 wire clk_75;
 
@@ -43,8 +43,8 @@ wire clk_75;
  * Signals assignments
  */
 
- assign check_in = {JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8};
- assign {JC4, JC3, JC2, JC1, JC8, JC7, JC6, JC5} = check_out;
+ assign check_in = {JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8, JA1, JA2};
+ assign {JC4, JC3, JC2, JC1, JC8, JC7, JC6, JC5, JA3, JA4} = check_out;
 
 // Mirror pclk on a pin for use by the testbench;
 // not functionally required for this design to work.

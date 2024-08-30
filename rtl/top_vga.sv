@@ -21,8 +21,8 @@
      inout  logic ps2_clk,
      inout  logic ps2_data,
      input  logic rst,
-     input  logic [7:0] check_in,
-     output logic [7:0] check_out,
+     input  logic [9:0] check_in,
+     output logic [9:0] check_out,
      output logic vs,
      output logic hs,
      output logic [3:0] r,
@@ -59,7 +59,7 @@ logic [1:0] ship_code_host;
 logic [1:0] ship_code_guest;
  logic [6:0] ship_xy_host;
  logic [6:0] ship_xy_guest;
- 
+logic [1:0] hit; 
  // SIGNALS ASSIGNMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  assign vs = mouse_out.vsync;
@@ -114,8 +114,12 @@ logic_ctl u_logic_ctl(
     .mouse_xpos(xpos_buf_out),
     .mouse_ypos(ypos_buf_out),
     .pick_ship(pick_ship),
+    .hit(hit),
+    .answer(check_in[9:8]),
+    .msg(check_out[9:8]),
     .check_in(check_in[7:0]),
     .check_out(check_out[7:0]),
+    .your_turn(your_turn),
     .vga_in(draw_out)
 );
 game_board u_game_board(
@@ -126,7 +130,11 @@ game_board u_game_board(
     .ship_code_host(ship_code_host),
     .ship_code_guest(ship_code_guest),
     .mouse_pos(mouse_pos),
-    .pick_ship(pick_ship)
+    .pick_ship(pick_ship),
+    .hit(hit),
+    .guest_pos(check_in[7:0]),
+    .answer(check_in[9:8]),
+    .your_turn(your_turn)
 );
 
 always_comb begin
