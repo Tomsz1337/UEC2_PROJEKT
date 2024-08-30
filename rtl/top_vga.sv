@@ -114,12 +114,12 @@ logic_ctl u_logic_ctl(
     .mouse_xpos(xpos_buf_out),
     .mouse_ypos(ypos_buf_out),
     .pick_ship(pick_ship),
-    .hit(hit),
-    .answer(check_in[9:8]),
-    .msg(check_out[9:8]),
-    .check_in(check_in[7:0]),
-    .check_out(check_out[7:0]),
-    .your_turn(your_turn),
+    //.hit(hit),
+    //.answer(check_in[9:8]),
+    //.msg(check_out[9:8]),
+   // .check_in(check_in[7:0]),
+   // .check_out(check_out[7:0]),
+   // .your_turn(your_turn),
     .vga_in(draw_out)
 );
 game_board u_game_board(
@@ -130,11 +130,11 @@ game_board u_game_board(
     .ship_code_host(ship_code_host),
     .ship_code_guest(ship_code_guest),
     .mouse_pos(mouse_pos),
-    .pick_ship(pick_ship),
-    .hit(hit),
-    .guest_pos(check_in[7:0]),
-    .answer(check_in[9:8]),
-    .your_turn(your_turn)
+    .pick_ship(pick_ship)
+    //.hit(hit),
+   // .guest_pos(check_in[7:0]),
+   // .answer(check_in[9:8]),
+   // .your_turn(your_turn)
 );
 
 always_comb begin
