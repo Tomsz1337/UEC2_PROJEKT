@@ -98,9 +98,12 @@ always_comb begin : output_blk
         end
 
         PICK_SHIP: begin
-
-            pick_position = mouse_position;
-            pick_ship = 1;
+            if(mouse_left) begin
+                pick_ship = 1;
+            end
+            else begin
+                pick_ship = 1;
+            end
         end
 
         WAIT: begin
