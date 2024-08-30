@@ -20,6 +20,7 @@ import vga_pkg::*; (
     input logic [11:0] mouse_ypos,
     input logic        answer,
     input logic        start_button,
+    input logic        board_addres,
     input logic [3:0]  ship_count,
     output logic [7:0] mouse_position,
     output logic       pick_place,
@@ -37,7 +38,7 @@ typedef enum bit [1:0]
 
 STATE_T state, state_nxt;
 
-
+logic player;
 logic hit_buf;
 logic answer_buf;
 logic pick_place_nxt;
@@ -53,12 +54,15 @@ end*/
 
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
+            player <= board_addres;
             state    <= IDLE;
             mouse_position <= 0;
             pick_place <= '0;
             your_turn <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
+                
+                
                 state    <= state_nxt;
                 //if(player_already_set == 0 & set_player == 1)begin
                  //   your_turn <= '1;
@@ -79,12 +83,12 @@ end
 
 always_comb begin : state_nxt_blk
     case(state)
-        IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
-        PICK_SHIP:      state_nxt = ship_count == 10 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
+        //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
+        PICK_SHIP:      state_nxt = ship_count == 10 ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
         
-        default:    state_nxt = IDLE;
+        default:    state_nxt = PICK_SHIP;
     endcase  
 end
 
@@ -113,6 +117,7 @@ always_comb begin : output_blk
         end
         TURN: begin
             pick_place = 1;
+            state_led = 4'b0001;
 
         end
 

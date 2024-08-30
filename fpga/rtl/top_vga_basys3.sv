@@ -18,6 +18,7 @@ module top_vga_basys3 (
     input  wire clk,
     input  wire btnC,
     input  wire btnU,
+    input  wire sw0,
     inout  wire PS2Clk,
     inout  wire PS2Data,
     output wire Vsync,
@@ -86,7 +87,8 @@ top_vga u_top_vga (
     .vs(Vsync),
     .led({led1, led2, led3, led4}),
     .check_in(check_in),
-    .check_out(check_out)
+    .check_out(check_out),
+    .board_addres(sw0)
 );
 
 endmodule

@@ -22,6 +22,7 @@
      inout  logic ps2_data,
      input  logic rst,
      input  logic start_button,
+     input  logic board_addres,
      input  logic [9:0] check_in,
      output logic [9:0] check_out,
      output logic vs,
