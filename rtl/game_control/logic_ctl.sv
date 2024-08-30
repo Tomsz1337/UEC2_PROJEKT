@@ -66,12 +66,10 @@ always_ff @(posedge clk) begin : xypos_blk
                  //   your_turn <= '1;
                 //end 
                // else begin
+                mouse_position[7:4] <= (mouse_ypos-193)/32;
+                mouse_position[3:0] <= (mouse_xpos-608)/32;
+                ship_count_buf <= ship_count;
                     
-                    ship_count_buf <= ship_count;
-                    if(mouse_left == '1 ) begin
-                        mouse_position[7:4] <= (mouse_ypos-193)/32;
-                        mouse_position[3:0] <= (mouse_xpos-608)/32;
-                    end
                     /*else if (mouse_left == '1 && mouse_xpos <= 416)
                         mouse_position[7:4] <= (mouse_ypos-193)/32;
                         mouse_position[3:0] <= (mouse_xpos-96)/32;
@@ -102,13 +100,14 @@ always_comb begin : output_blk
         end
 
         PICK_SHIP: begin
-            state_led = 4'b0010;
-            if(mouse_left) begin
+            
+            if(mouse_left == 1) begin
                 pick_ship = 1;
             end
             else begin
                 pick_ship = 0;
             end
+            state_led = 4'b0010;
         end
 
         WAIT: begin
