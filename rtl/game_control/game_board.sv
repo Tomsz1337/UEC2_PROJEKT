@@ -18,13 +18,13 @@ module game_board
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
         output logic [1:0] ship_code_host,
-        output logic [1:0] ship_code_guest 
-        
+        output logic [1:0] ship_code_guest, 
+        output logic [3:0] ship_count
     );
     
     logic [1:0] board_host [0:9][0:9];
     logic [1:0] board_guest [0:9][0:9];
-    logic [3:0] ship_count;
+  
         always_ff @(posedge clk, posedge rst) begin
             if (rst) begin
                 ship_count <= 4'b0000;

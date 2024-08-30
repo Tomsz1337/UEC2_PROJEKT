@@ -121,7 +121,7 @@ logic_ctl u_logic_ctl(
     .start_button(start_button),
     .pick_place(pick_place),
     .state_led(led),
-    //.ship_count(ship_count),
+    .ship_count(ship_count),
     //.hit(hit),
     //.answer(check_in[9:8]),
     //.msg(check_out[9:8]),
@@ -138,9 +138,9 @@ game_board u_game_board(
     .ship_code_host(ship_code_host),
     .ship_code_guest(ship_code_guest),
     .mouse_pos(mouse_pos),
-    .pick_ship(pick_ship)
+    .pick_ship(pick_ship),
     //.pick_place(pick_place),
-   // .ship_count(ship_count)
+    .ship_count(ship_count)
     //.hit(hit),
    // .guest_pos(check_in[7:0]),
    // .answer(check_in[9:8]),

@@ -20,6 +20,7 @@ import vga_pkg::*; (
     input logic [11:0] mouse_ypos,
     input logic        answer,
     input logic        start_button,
+    input logic [3:0]  ship_count,
     output logic [7:0] mouse_position,
     output logic       pick_place,
     output logic       pick_ship,
@@ -36,7 +37,7 @@ typedef enum bit [1:0]
 
 STATE_T state, state_nxt;
 
-logic ship_count_buf;
+
 logic hit_buf;
 logic answer_buf;
 logic pick_place_nxt;
@@ -79,7 +80,7 @@ end
 always_comb begin : state_nxt_blk
     case(state)
         IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
-        PICK_SHIP:      state_nxt = ship_count_buf == 10 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
+        PICK_SHIP:      state_nxt = ship_count == 10 ? WAIT : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
         
@@ -108,7 +109,7 @@ always_comb begin : output_blk
 
         WAIT: begin
             pick_place = 0;
-
+            state_led = 4'b0010;
         end
         TURN: begin
             pick_place = 1;
