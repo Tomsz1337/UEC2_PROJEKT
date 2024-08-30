@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-30 22:24:22
+Created: 2024-08-30 22:32:14
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -84,6 +84,30 @@ WARNING: [Synth 8-327] inferring latch for variable 'data_guest_reg' [rtl/ship/s
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port vga_out\.hblnk in module draw_mouse is either unconnected or has no load
 WARNING: [Synth 8-7129] Port rst in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vsync in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vblnk in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hsync in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hblnk in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[8] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[7] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[6] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[5] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[4] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_xpos[11] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_xpos[10] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_xpos[9] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_ypos[11] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_ypos[10] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mouse_ypos[9] in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port answer in module logic_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port set_player in module logic_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_out\.rgb[11] in module vga_timing is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_out\.rgb[10] in module vga_timing is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_out\.rgb[9] in module vga_timing is either unconnected or has no load
@@ -106,16 +130,6 @@ WARNING: [Synth 8-7129] Port check_out[3] in module top_vga is either unconnecte
 WARNING: [Synth 8-7129] Port check_out[2] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[1] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7129] Port check_out[0] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[9] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[8] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[7] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[6] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[5] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[4] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[3] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[2] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[1] in module top_vga is either unconnected or has no load
-WARNING: [Synth 8-7129] Port check_in[0] in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_logic_ctl/pick_place_reg) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_logic_ctl/pick_ship_reg) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_ship_rom/data_reg[12]) is unused and will be removed from module top_vga_basys3.

@@ -102,7 +102,7 @@ always_comb begin : output_blk
                 pick_ship = 1;
             end
             else begin
-                pick_ship = 1;
+                pick_ship = 0;
             end
         end
 
