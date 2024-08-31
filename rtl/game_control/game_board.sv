@@ -62,7 +62,7 @@ module game_board
                 board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
             end 
-            else if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
+            else if(vga_in.hcount == 0 & vga_in.vcount == 300)begin
                 if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
                     
                     board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;

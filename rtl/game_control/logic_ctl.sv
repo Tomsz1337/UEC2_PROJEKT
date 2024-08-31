@@ -48,6 +48,7 @@ logic your_turn_nxt;
 logic addres_sent_nxt;
 logic pick_ship_nxt;
 logic pick_place_nxt;
+logic [7:0] check_out_nxt;
 
 
 always_ff @(posedge clk) begin : xypos_blk
@@ -59,6 +60,7 @@ always_ff @(posedge clk) begin : xypos_blk
             pick_place <= '0;
             addres_sent <= '0;
             your_turn <= '0;
+            check_out <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
                 
@@ -68,6 +70,7 @@ always_ff @(posedge clk) begin : xypos_blk
                 pick_ship <= pick_ship_nxt;
                 pick_place <= pick_place_nxt;
                 addres_sent <= addres_sent_nxt;
+                check_out <= check_out_nxt;
 
                 mouse_position[7:4] <= (mouse_ypos-193)/32;
                 mouse_position[3:0] <= (mouse_xpos-608)/32;
@@ -81,7 +84,7 @@ end
 always_comb begin : state_nxt_blk
     case(state)
         //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
-        PICK_SHIP:      state_nxt = ship_count == 11 ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
+        PICK_SHIP:      state_nxt = ship_count == 11 & !mouse_left ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = your_turn ? TURN : WAIT;
         
@@ -120,7 +123,7 @@ always_comb begin : output_blk
         TURN: begin
             pick_place_nxt = 1;
             if(mouse_left == 1)begin
-                check_out = mouse_position;
+                check_out_nxt = mouse_position;
                 addres_sent_nxt = '1;
             end
             state_led = 4'b0001;
