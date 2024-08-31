@@ -7,7 +7,10 @@
  * 2023  AGH University of Science and Technology
  * MTM UEC2
  * Piotr Kaczmarczyk
- *
+ * Modified by:
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Tomasz Ochmanek
  * Description:
  * Top level synthesizable module including the project top and all the FPGA-referred modules.
  */
@@ -17,6 +20,7 @@
 module top_vga_basys3 (
     input  wire clk,
     input  wire btnC,
+    input  wire sw0,
     inout  wire PS2Clk,
     inout  wire PS2Data,
     output wire Vsync,
@@ -24,7 +28,9 @@ module top_vga_basys3 (
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    output wire JA1
+    output wire led1, led2, led3, led4,
+    input  wire JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8, JA1, JA2, JA5,
+    output wire JC1, JC2, JC3, JC4, JC5, JC6, JC7, JC8, JA3, JA4, JA6
 );
 
 
@@ -33,7 +39,8 @@ module top_vga_basys3 (
  */
 
 wire locked;
-wire pclk_mirror;
+wire [10:0] check_in;
+wire [10:0] check_out;
 wire clk_100;
 wire clk_75;
 
@@ -41,8 +48,8 @@ wire clk_75;
  * Signals assignments
  */
 
-assign JA1 = pclk_mirror;
-
+ assign check_in = {JA5, JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8, JA1, JA2};
+ assign {JA6, JC4, JC3, JC2, JC1, JC8, JC7, JC6, JC5, JA3, JA4} = check_out;
 
 // Mirror pclk on a pin for use by the testbench;
 // not functionally required for this design to work.
@@ -78,7 +85,11 @@ top_vga u_top_vga (
     .g(vgaGreen),
     .b(vgaBlue),
     .hs(Hsync),
-    .vs(Vsync)
+    .vs(Vsync),
+    .led({led1, led2, led3, led4}),
+    .check_in(check_in),
+    .check_out(check_out),
+    .board_addres(sw0)
 );
 
 endmodule
