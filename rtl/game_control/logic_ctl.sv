@@ -18,14 +18,12 @@ import vga_pkg::*; (
     input logic        mouse_left,
     input logic [11:0] mouse_xpos,
     input logic [11:0] mouse_ypos,
-   
-    input logic        start_button,
     input logic        board_addres,
-    input logic [1:0] msg_send,
-    input logic [1:0] msg_in,
-    input logic [7:0] check_in,
+    input logic [1:0]  msg_send,
+    input logic [1:0]  msg_in,
+    input logic [7:0]  check_in,
     output logic [7:0] check_out,
-    input logic [3:0]  ship_count,
+    input logic  [3:0] ship_count,
     output logic       addres_sent,
     output logic [7:0] mouse_position,
     output logic [7:0] addres4check,
@@ -47,14 +45,19 @@ STATE_T state, state_nxt;
 logic player;
 logic your_turn;
 logic your_turn_nxt;
+logic addres_sent_nxt;
+logic pick_ship_nxt;
+logic pick_place_nxt;
 
 
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
             player <= '0;
             state    <= PICK_SHIP;
-            mouse_position <= 0;
-            
+            mouse_position <= '0;
+            pick_ship <= '1;
+            pick_place <= '0;
+            addres_sent <= '0;
             your_turn <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
@@ -62,7 +65,10 @@ always_ff @(posedge clk) begin : xypos_blk
                 player <= board_addres;
                 state    <= state_nxt;
                 your_turn <= your_turn_nxt;
-                
+                pick_ship <= pick_ship_nxt;
+                pick_place <= pick_place_nxt;
+                addres_sent <= addres_sent_nxt;
+
                 mouse_position[7:4] <= (mouse_ypos-193)/32;
                 mouse_position[3:0] <= (mouse_xpos-608)/32;
                     
@@ -94,28 +100,28 @@ always_comb begin : output_blk
 
         PICK_SHIP: begin
             if(mouse_left == 1) begin
-                pick_ship = 1;
+                pick_ship_nxt = 1;
             end
             else begin
-                pick_ship = 0;
+                pick_ship_nxt = 0;
             end
             state_led = 4'b0100;
         end
 
         WAIT: begin
-            pick_place = 0;
+            pick_place_nxt = 0;
             addres4check = check_in;
             if(msg_send != 0 ) begin
                 your_turn_nxt = 1;
             end
-            addres_sent = '1;
+            addres_sent_nxt = '1;
             state_led = 4'b0010;
         end
         TURN: begin
-            pick_place = 1;
+            pick_place_nxt = 1;
             if(mouse_left == 1)begin
                 check_out = mouse_position;
-                addres_sent = '1;
+                addres_sent_nxt = '1;
             end
             state_led = 4'b0001;
             if(msg_in != 0) begin

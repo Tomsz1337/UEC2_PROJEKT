@@ -120,7 +120,6 @@ logic_ctl u_logic_ctl(
     .mouse_xpos(xpos_buf_out),
     .mouse_ypos(ypos_buf_out),
     .pick_ship(pick_ship),
-    .start_button(start_button),
     .pick_place(pick_place),
     .state_led(led),
     .ship_count(ship_count),
