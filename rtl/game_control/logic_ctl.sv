@@ -109,6 +109,11 @@ always_comb begin : output_blk
                 pick_ship_nxt = 0;
             end
             state_led = 4'b0100;
+            if(player == 1)begin
+                your_turn_nxt = '0;
+            end else begin
+                your_turn_nxt = '1;
+            end
         end
 
         WAIT: begin
@@ -136,6 +141,7 @@ always_comb begin : output_blk
         end
 
         default: begin
+            your_turn_nxt = '0;
            
 
         end
