@@ -94,7 +94,7 @@ always_comb begin : output_blk
     case(state)
         IDLE: begin
             
-            pick_ship = 0;
+            pick_ship_nxt = 0;
             state_led = 4'b1000;
         end
 
