@@ -49,8 +49,6 @@ logic addres_sent_nxt;
 logic pick_ship_nxt;
 logic pick_place_nxt;
 logic [7:0] check_out_nxt;
-logic [1:0] msg_in_pre;
-logic [1:0] msg_send_pre;
 
 
 always_ff @(posedge clk) begin : xypos_blk
@@ -64,9 +62,8 @@ always_ff @(posedge clk) begin : xypos_blk
             your_turn <= '0;
             check_out <= '0;
         end else begin
+            
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
-                msg_in_pre <= msg_in;
-                msg_send_pre <= msg_send;
                 player <= board_addres;
                 state    <= state_nxt;
                 your_turn <= your_turn_nxt;
@@ -88,8 +85,8 @@ always_comb begin : state_nxt_blk
     case(state)
         //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count == 11 & !mouse_left ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
-        WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
-        TURN:           state_nxt = your_turn ? TURN : WAIT;
+        WAIT:           state_nxt = your_turn & !msg_send ? TURN : WAIT;                                  // sygnal hit
+        TURN:           state_nxt = your_turn & !msg_in ? TURN : WAIT;
         
         default:    state_nxt = PICK_SHIP;
     endcase  
@@ -117,7 +114,7 @@ always_comb begin : output_blk
         WAIT: begin
             pick_place_nxt = 0;
             addres4check = check_in;
-            if(msg_send_pre != 0 ) begin
+            if(msg_send != 0 ) begin
                 your_turn_nxt = 1;
             end
             addres_sent_nxt = '0;
@@ -130,7 +127,7 @@ always_comb begin : output_blk
                 addres_sent_nxt = '1;
             end
             state_led = 4'b0001;
-            if(msg_in_pre != 0) begin
+            if(msg_in != 0) begin
                 your_turn_nxt = 0;
             end
             else begin
