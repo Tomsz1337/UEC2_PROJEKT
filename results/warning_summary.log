@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 05:55:29
+Created: 2024-08-31 06:00:43
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -162,9 +162,9 @@ WARNING: [Synth 8-3332] Sequential element (data_guest_reg[1]) is unused and wil
 WARNING: [Synth 8-3332] Sequential element (data_guest_reg[0]) is unused and will be removed from module ship_rom.
 
 ----IMPLEMENTATION----
+WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_game_board/your_turn_nxt__0 is a gated clock net sourced by a combinational pin u_top_vga/u_game_board/your_turn_nxt_reg_i_2/O, cell u_top_vga/u_game_board/your_turn_nxt_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/E[0] is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/led3_OBUF_inst_i_1/O, cell u_top_vga/u_logic_ctl/led3_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/addres_sent_nxt__0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/addres_sent_nxt_reg_i_2/O, cell u_top_vga/u_logic_ctl/addres_sent_nxt_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/check_out_nxt__0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/check_out_nxt_reg[7]_i_1/O, cell u_top_vga/u_logic_ctl/check_out_nxt_reg[7]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/pick_place_nxt__0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/pick_place_nxt_reg_i_2/O, cell u_top_vga/u_logic_ctl/pick_place_nxt_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/pick_ship_nxt__0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/pick_ship_nxt_reg_i_1/O, cell u_top_vga/u_logic_ctl/pick_ship_nxt_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/your_turn_nxt_reg_i_2_n_0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/your_turn_nxt_reg_i_2/O, cell u_top_vga/u_logic_ctl/your_turn_nxt_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.

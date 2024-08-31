@@ -85,7 +85,7 @@ always_comb begin : state_nxt_blk
     case(state)
         //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count == 11 & !mouse_left ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
-        WAIT:           state_nxt = your_turn & !msg_send ? TURN : WAIT;                                  // sygnal hit
+        WAIT:           state_nxt = your_turn & !msg_send & !msg_in ? TURN : WAIT;                                  // sygnal hit
         TURN:           state_nxt = your_turn & !msg_in & !msg_send ? TURN : WAIT;
         
         default:    state_nxt = PICK_SHIP;

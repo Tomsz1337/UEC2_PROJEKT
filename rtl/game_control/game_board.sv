@@ -62,7 +62,7 @@ module game_board
                 board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
             end 
-            else if(vga_in.hcount == 1 & vga_in.vcount == 0)begin
+            else if(vga_in.hcount == 0 & vga_in.vcount == 300)begin
                 if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
                     
                     board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
@@ -78,6 +78,7 @@ module game_board
                     else if(board_host[check_in[7:4]][check_in[3:0]] == 2'b01) begin
                         msg_out <= 2'b10;
                         board_host[check_in[7:4]][check_in[3:0]] <= 2'b10;
+                        // zrobic counter ktory dobija do 11
                     end else begin
                         msg_out <= 2'b00;
                     end
@@ -90,9 +91,9 @@ module game_board
                     end
 
                 end
+                //if ten ctr jest 11 to msg out 01 to rysujemy w na host a L na guest a jak msg_in 01 to na odwrot (rysujemy to tak jak boarda w resecie) 
             end
             else begin
-
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];
                 ship_code_guest <= board_guest[ship_xy_guest/10][ship_xy_guest%10];
             end
