@@ -150,7 +150,8 @@ game_board u_game_board(
     //.check_out(check_out[9:2]),
     .msg_in(check_in[1:0]),
     .msg_out(check_out[1:0]),
-    .addres_recieved(check_in[10])
+    .addres_recieved(check_in[10]),
+    .vga_in(draw_out)
    // .your_turn(your_turn)
 );
 

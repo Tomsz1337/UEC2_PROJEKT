@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 04:23:13
+Created: 2024-08-31 04:34:21
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -27,6 +27,22 @@ WARNING: [Synth 8-87] always_comb on 'data_reg' did not result in combinational 
 WARNING: [Synth 8-87] always_comb on 'data_guest_reg' did not result in combinational logic [rtl/ship/ship_rom.sv:119]
 WARNING: [Synth 8-7129] Port vga_out\.hblnk in module draw_mouse is either unconnected or has no load
 WARNING: [Synth 8-7129] Port rst in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vsync in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vblnk in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hsync in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hblnk in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[8] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[7] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[6] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[5] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[4] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module game_board is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.vsync in module logic_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.vblnk in module logic_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.hsync in module logic_ctl is either unconnected or has no load
@@ -67,6 +83,22 @@ WARNING: [Synth 8-327] inferring latch for variable 'data_guest_reg' [rtl/ship/s
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port vga_out\.hblnk in module draw_mouse is either unconnected or has no load
 WARNING: [Synth 8-7129] Port rst in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vsync in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vblnk in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hsync in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hblnk in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[8] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[7] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[6] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[5] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[4] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module game_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module game_board is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.vsync in module logic_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.vblnk in module logic_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.hsync in module logic_ctl is either unconnected or has no load

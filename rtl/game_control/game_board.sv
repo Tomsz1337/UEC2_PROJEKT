@@ -25,7 +25,8 @@ module game_board
         //output logic [7:0] check_out,
         output logic [1:0] ship_code_host,
         output logic [1:0] ship_code_guest, 
-        output logic [3:0] ship_count
+        output logic [3:0] ship_count,
+        vga_if.in vga_in
     );
     
     logic [1:0] board_host [0:9][0:9];
@@ -61,35 +62,35 @@ module game_board
                 board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
             end 
-            
-            else if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
-                
-                board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
-                ship_count ++;
-            end
-            
-            else if (pick_place == 0 && pick_ship == 0 && ship_count >= 10 && addres_recieved == 1) begin
-
-                if(board_host[check_in[7:4]][check_in[3:0]] == 2'b00) begin
-                    msg_out <= 2'b11;
-                    board_host[check_in[7:4]][check_in[3:0]] <= 2'b11;
-                end
-                else if(board_host[check_in[7:4]][check_in[3:0]] == 2'b01) begin
-                    msg_out <= 2'b10;
-                    board_host[check_in[7:4]][check_in[3:0]] <= 2'b10;
-                end else begin
-                    msg_out <= 2'b00;
+            else if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
+                if(pick_ship == 1 && board_host[mouse_pos[7:4]][mouse_pos[3:0]] == 2'b00 && ship_count <= 10) begin
+                    
+                    board_host[mouse_pos[7:4]][mouse_pos[3:0]] <= 2'b01;
+                    ship_count ++;
                 end
                 
-            end
+                else if (pick_place == 0 && pick_ship == 0 && ship_count >= 10 && addres_recieved == 1) begin
 
-            else if(pick_place == 1 && pick_ship == 0 && ship_count >= 10 && addres_recieved == 0) begin
-                if(msg_in != 0) begin
-                    board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= msg_in;
+                    if(board_host[check_in[7:4]][check_in[3:0]] == 2'b00) begin
+                        msg_out <= 2'b11;
+                        board_host[check_in[7:4]][check_in[3:0]] <= 2'b11;
+                    end
+                    else if(board_host[check_in[7:4]][check_in[3:0]] == 2'b01) begin
+                        msg_out <= 2'b10;
+                        board_host[check_in[7:4]][check_in[3:0]] <= 2'b10;
+                    end else begin
+                        msg_out <= 2'b00;
+                    end
+                    
                 end
 
+                else if(pick_place == 1 && pick_ship == 0 && ship_count >= 10 && addres_recieved == 0) begin
+                    if(msg_in != 0) begin
+                        board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= msg_in;
+                    end
+
+                end
             end
-            
             else begin
 
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];

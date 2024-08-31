@@ -55,7 +55,7 @@ always_ff @(posedge clk) begin : xypos_blk
             player <= '0;
             state    <= PICK_SHIP;
             mouse_position <= '0;
-            pick_ship <= '1;
+            pick_ship <= '0;
             pick_place <= '0;
             addres_sent <= '0;
             your_turn <= '0;
