@@ -114,7 +114,7 @@ always_comb begin : output_blk
             if(msg_send != 0 ) begin
                 your_turn_nxt = 1;
             end
-            addres_sent_nxt = '1;
+            addres_sent_nxt = '0;
             state_led = 4'b0010;
         end
         TURN: begin
