@@ -104,8 +104,8 @@ always_comb begin : output_blk
 
         WAIT: begin
             pick_place = 0;
+            addres4check = check_in;
             if(msg_send != 0 ) begin
-                addres4check = check_in;
                 your_turn_nxt = 1;
             end
             state_led = 4'b0010;
