@@ -67,7 +67,7 @@ module game_board
                 ship_count ++;
             end
             
-            else if (pick_place == 0) begin
+            else if (pick_place == 0 && pick_ship == 0 && ship_count >= 10) begin
 
                 if(board_host[check_in[7:4]][check_in[3:0]] == 2'b00) begin
                     msg_out <= 2'b11;
@@ -82,7 +82,7 @@ module game_board
                 
             end
 
-            else if(pick_place == 1) begin
+            else if(pick_place == 1 && pick_ship == 0 && ship_count >= 10) begin
                 if(msg_in != 0) begin
                     board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= msg_in;
                 end
