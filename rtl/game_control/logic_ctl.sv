@@ -26,6 +26,7 @@ import vga_pkg::*; (
     input logic [7:0] check_in,
     output logic [7:0] check_out,
     input logic [3:0]  ship_count,
+    output logic       addres_sent,
     output logic [7:0] mouse_position,
     output logic [7:0] addres4check,
     output logic       pick_place,
@@ -44,7 +45,6 @@ typedef enum bit [1:0]
 STATE_T state, state_nxt;
 
 logic player;
-
 logic your_turn;
 logic your_turn_nxt;
 
@@ -108,12 +108,14 @@ always_comb begin : output_blk
             if(msg_send != 0 ) begin
                 your_turn_nxt = 1;
             end
+            addres_sent = '1;
             state_led = 4'b0010;
         end
         TURN: begin
             pick_place = 1;
             if(mouse_left == 1)begin
                 check_out = mouse_position;
+                addres_sent = '1;
             end
             state_led = 4'b0001;
             if(msg_in != 0) begin

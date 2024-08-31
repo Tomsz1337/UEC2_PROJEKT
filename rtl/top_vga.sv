@@ -23,8 +23,8 @@
      input  logic rst,
      input  logic start_button,
      input  logic board_addres,
-     input  logic [9:0] check_in,
-     output logic [9:0] check_out,
+     input  logic [10:0] check_in,
+     output logic [10:0] check_out,
      output logic vs,
      output logic hs,
      output logic [3:0] led,
@@ -131,6 +131,7 @@ logic_ctl u_logic_ctl(
     .check_in(check_in[9:2]),
     .check_out(check_out[9:2]),
     .addres4check(addres4check),
+    .addres_sent(check_out[10]),
    // .your_turn(your_turn),
     .vga_in(draw_out)
 );
@@ -149,7 +150,8 @@ game_board u_game_board(
     .check_in(addres4check),
     //.check_out(check_out[9:2]),
     .msg_in(check_in[1:0]),
-    .msg_out(check_out[1:0])
+    .msg_out(check_out[1:0]),
+    .addres_recieved(check_in[10])
    // .your_turn(your_turn)
 );
 

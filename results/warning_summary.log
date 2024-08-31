@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 03:28:26
+Created: 2024-08-31 03:58:17
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:16]
@@ -14,7 +14,8 @@ WARNING: [Synth 8-87] always_comb on 'pick_ship_reg' did not result in combinati
 WARNING: [Synth 8-87] always_comb on 'pick_place_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:106]
 WARNING: [Synth 8-87] always_comb on 'addres4check_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:107]
 WARNING: [Synth 8-87] always_comb on 'your_turn_nxt_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:109]
-WARNING: [Synth 8-87] always_comb on 'check_out_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:116]
+WARNING: [Synth 8-87] always_comb on 'addres_sent_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:111]
+WARNING: [Synth 8-87] always_comb on 'check_out_reg' did not result in combinational logic [rtl/game_control/logic_ctl.sv:117]
 WARNING: [Synth 8-5856] 3D RAM board_host_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-5856] 3D RAM board_guest_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/Mouse/MouseCtl.vhd:450]
@@ -55,7 +56,8 @@ WARNING: [Synth 8-7129] Port vga_out\.rgb[3] in module vga_timing is either unco
 WARNING: [Synth 8-7129] Port vga_out\.rgb[2] in module vga_timing is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_out\.rgb[1] in module vga_timing is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_out\.rgb[0] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-327] inferring latch for variable 'check_out_reg' [rtl/game_control/logic_ctl.sv:116]
+WARNING: [Synth 8-327] inferring latch for variable 'check_out_reg' [rtl/game_control/logic_ctl.sv:117]
+WARNING: [Synth 8-327] inferring latch for variable 'addres_sent_reg' [rtl/game_control/logic_ctl.sv:111]
 WARNING: [Synth 8-327] inferring latch for variable 'addres4check_reg' [rtl/game_control/logic_ctl.sv:107]
 WARNING: [Synth 8-327] inferring latch for variable 'pick_place_reg' [rtl/game_control/logic_ctl.sv:106]
 WARNING: [Synth 8-327] inferring latch for variable 'pick_ship_reg' [rtl/game_control/logic_ctl.sv:91]
@@ -129,6 +131,7 @@ WARNING: [Synth 8-3332] Sequential element (data_guest_reg[0]) is unused and wil
 
 ----IMPLEMENTATION----
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/E[0] is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/led3_OBUF_inst_i_1/O, cell u_top_vga/u_logic_ctl/led3_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/addres_sent_reg_i_2_n_0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/addres_sent_reg_i_2/O, cell u_top_vga/u_logic_ctl/addres_sent_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/check_out_reg[7]_i_1_n_0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/check_out_reg[7]_i_1/O, cell u_top_vga/u_logic_ctl/check_out_reg[7]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/pick_place_reg_i_2_n_0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/pick_place_reg_i_2/O, cell u_top_vga/u_logic_ctl/pick_place_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_logic_ctl/pick_ship_reg_i_2_n_0 is a gated clock net sourced by a combinational pin u_top_vga/u_logic_ctl/pick_ship_reg_i_2/O, cell u_top_vga/u_logic_ctl/pick_ship_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
