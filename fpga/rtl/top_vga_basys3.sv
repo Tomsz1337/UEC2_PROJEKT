@@ -7,7 +7,10 @@
  * 2023  AGH University of Science and Technology
  * MTM UEC2
  * Piotr Kaczmarczyk
- *
+ * Modified by:
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Tomasz Ochmanek
  * Description:
  * Top level synthesizable module including the project top and all the FPGA-referred modules.
  */
@@ -17,7 +20,6 @@
 module top_vga_basys3 (
     input  wire clk,
     input  wire btnC,
-    input  wire btnU,
     input  wire sw0,
     inout  wire PS2Clk,
     inout  wire PS2Data,
@@ -79,7 +81,6 @@ top_vga u_top_vga (
     .ps2_data(PS2Data),
     .ps2_clk(PS2Clk),
     .rst(btnC),
-    .start_button(btnU),
     .r(vgaRed),
     .g(vgaGreen),
     .b(vgaBlue),

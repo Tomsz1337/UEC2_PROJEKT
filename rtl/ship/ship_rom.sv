@@ -6,7 +6,7 @@
 // Project Name : 
 // Target Devices : BASYS3
 // 
-// Description : rysowanie statkow
+// Description : data for draw ship
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 `timescale 1ns / 1ps
@@ -35,8 +35,8 @@ module ship_rom
     
     always_comb begin
         case (addres)
-            //////////puste pole
-            7'h00: data = 32'h00000000;  //0100000
+            ////////////////puste pole
+            7'h00: data = 32'h00000000;  
             7'h01: data = 32'h00000000;
             7'h02: data = 32'h00000000;
             7'h03: data = 32'h00000000;
@@ -54,7 +54,7 @@ module ship_rom
             7'h0f: data = 32'h00000000;
             
 
-            /////////////////statek
+            ////////////////////statek
             7'h20: data = 32'hffffffff; 
             7'h21: data = 32'hffffffff;
             7'h22: data = 32'hffffffff;
@@ -74,8 +74,8 @@ module ship_rom
             
 
 
-            //////////////TRFIONY
-            7'h40: data = 32'hFFFFFFFF; //100.0000
+            ///////////////////TRFIONY
+            7'h40: data = 32'hFFFFFFFF; 
             7'h41: data = 32'hF38001CF;
             7'h42: data = 32'hF1C0038F;
             7'h43: data = 32'hF0E0070F;
@@ -93,7 +93,7 @@ module ship_rom
             7'h4f: data = 32'hFFFFFFFF;
             
 
-            ////////////////////////CHYBIONY
+            /////////////////CHYBIONY
             7'h60: data = 32'h00000000; 
             7'h61: data = 32'h00000000;
             7'h62: data = 32'h07FFFFE0;

@@ -102,9 +102,7 @@ always_comb begin
             rgb_nxt = 12'hf_0_0;
         end else begin 
             rgb_nxt = int2.rgb;
-        end
-   
-        
+        end 
     end
     else begin
         rgb_nxt = int2.rgb;

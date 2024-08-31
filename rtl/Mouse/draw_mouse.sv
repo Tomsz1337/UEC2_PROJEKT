@@ -1,8 +1,18 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Company : AGH University of Krakow
+// Create Date : 24.07.2024
+// Designers Name : Tomasz Ochmanek & Jan Panek
+// Module Name : draw_mouse
+// Project Name : UEC2_PROJEKT_STATKI
+// Target Devices : BASYS3
+// 
+// Description : Moduł odpowiedzialny za rysowanie myszy
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
+
 
 module draw_mouse (
     input  logic clk,
-    input  logic rst,
     vga_if.in vga_in,
     vga_if.out vga_out,
     input logic [11:0] xpos,
@@ -10,10 +20,6 @@ module draw_mouse (
 );
 
 import vga_pkg::*;
-
-/**
- * Internal logic
- */
 
 always_ff @(posedge clk) begin
     vga_out.vcount <= vga_in.vcount;
@@ -36,3 +42,4 @@ MouseDisplay u_MouseDisplay(
 
  );
  endmodule
+ 

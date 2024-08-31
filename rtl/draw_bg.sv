@@ -2,7 +2,7 @@
  * Copyright (C) 2023  AGH University of Science and Technology
  * MTM UEC2
  * Author: Piotr Kaczmarczyk
- *
+ * Modified : Tomasz Ochmanek 2024
  * Description:
  * Draw background.
  */
@@ -23,7 +23,6 @@
  // LOCAL VARIABLES AND SIGNALES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
  logic [11:0] rgb_nxt;
- //logic [47:0] ship_line_pixels_in;
  localparam LIGHT_COLOR = 12'h0_C_F;
  localparam DARK_COLOR = 12'hC_C_C;
  vga_if int2();
@@ -99,39 +98,11 @@
         
              else if ((int2.hcount >= 608 & int2.hcount < 928 & int2.vcount >= 192 & int2.vcount < 512))
                  rgb_nxt = DARK_COLOR;
-         // OBRAMOWIANIE PLANSZY 20PIX /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                 //else if ((int2.hcount >= 29 & int2.hcount <= 45) & int2.vcount >= 164 & int2.vcount <= 601)
-                 //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
-                    // rgb_nxt = 12'hf_f_f;
-                 // else
-                    // rgb_nxt = 12'h0_0_0;
- 
-                // else if ((int2.hcount >= 450 & int2.hcount <= 466) & int2.vcount >= 164 & int2.vcount <= 601)
-                 //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
-                     //rgb_nxt = 12'hf_f_f;
-                  //else
-                     //rgb_nxt = 12'h0_0_0;
- 
- 
-                 //else if ((int2.hcount >= 45 & int2.hcount <= 450) & int2.vcount >= 164 & int2.vcount <= 180)
-                 //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
-                     //rgb_nxt = 12'hf_f_f;
-                  //else
-                    // rgb_nxt = 12'h0_0_0;
- 
-                // else if ((int2.hcount >= 45 & int2.hcount <= 450) & int2.vcount >= 585 & int2.vcount <= 601)
-                 //if(frame_pixels[7 - (int2.hcount - 5)%8] == 1'b1)
-                    // rgb_nxt = 12'hf_f_f;
-                 // else
-                   //  rgb_nxt = 12'h0_0_0;
-        //else if (int2.hcount == 48 &  int2.vcount >= 144 )
-         //   ship_line_pixels_in[47:0] = 2'b00;
-                 
-         else                                     // KOLOR TŁA //
+
+         // KOLOR TŁA ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+         else                                     
              rgb_nxt = 12'hF_A_C;                
- 
-             
-     end
- end
- 
- endmodule
+        
+    end
+end 
+endmodule

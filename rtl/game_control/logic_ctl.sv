@@ -3,7 +3,7 @@
 // Create Date : 25.08.2024
 // Designers Name : Tomasz Ochmanek & JAn PAnek
 // Module Name : logic_ctl
-// Project Name : SZACHY - Projekt zaliczeniowy
+// Project Name :  UEC2_PROJEKT_STATKI
 // Target Devices : BASYS3
 // 
 // Description : maszyna stanow sterujaca gra
@@ -13,28 +13,27 @@
 
 module logic_ctl
 import vga_pkg::*; (
-    input logic        clk,
-    input logic        rst,
-    input logic        mouse_left,
-    input logic [11:0] mouse_xpos,
-    input logic [11:0] mouse_ypos,
-    input logic        board_addres,
-    input logic [1:0]  msg_send,
-    input logic [1:0]  msg_in,
-    input logic [7:0]  check_in,
-    output logic [7:0] check_out,
-    input logic  [3:0] ship_count,
-    output logic       addres_sent,
-    output logic [7:0] mouse_position,
-    output logic [7:0] addres4check,
-    output logic       pick_place,
-    output logic       pick_ship,
-    output logic [3:0] state_led,
+    input logic         clk,
+    input logic         rst,
+    input logic         mouse_left,
+    input logic  [11:0] mouse_xpos,
+    input logic  [11:0] mouse_ypos,
+    input logic         board_addres,
+    input logic  [1:0]  msg_send,
+    input logic  [1:0]  msg_in,
+    input logic  [3:0]  ship_count,
+    input logic  [7:0]  check_in,
+    output logic [7:0]  check_out,
+    output logic        addres_sent,
+    output logic [7:0]  mouse_position,
+    output logic [7:0]  addres4check,
+    output logic        pick_place,
+    output logic        pick_ship,
+    output logic [3:0]  state_led,
     vga_if.in vga_in
 );
 typedef enum bit [1:0]
 {
-    IDLE        = 2'b00,
     PICK_SHIP   = 2'b01,
     WAIT        = 2'b10,
     TURN        = 2'b11
@@ -73,9 +72,7 @@ always_ff @(posedge clk) begin : xypos_blk
                 check_out <= check_out_nxt;
 
                 mouse_position[7:4] <= (mouse_ypos-193)/32;
-                mouse_position[3:0] <= (mouse_xpos-608)/32;
-                    
-                   
+                mouse_position[3:0] <= (mouse_xpos-608)/32;      
             end
         end
 end
@@ -83,9 +80,8 @@ end
 
 always_comb begin : state_nxt_blk
     case(state)
-        //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
-        PICK_SHIP:      state_nxt = ship_count == 11 & !mouse_left ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
-        WAIT:           state_nxt = your_turn & !msg_send & !msg_in ? TURN : WAIT;                                  // sygnal hit
+        PICK_SHIP:      state_nxt = ship_count == 11 & !mouse_left ? (player ? WAIT : TURN) : PICK_SHIP;                               
+        WAIT:           state_nxt = your_turn & !msg_send & !msg_in ? TURN : WAIT;                                 
         TURN:           state_nxt = your_turn & !msg_in & !msg_send ? TURN : WAIT;
         
         default:    state_nxt = PICK_SHIP;
@@ -95,12 +91,7 @@ end
 
 always_comb begin : output_blk
     case(state)
-        IDLE: begin
-            
-            pick_ship_nxt = 0;
-            state_led = 4'b1000;
-        end
-
+    
         PICK_SHIP: begin
             if(mouse_left == 1) begin
                 pick_ship_nxt = 1;

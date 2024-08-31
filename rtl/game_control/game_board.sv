@@ -6,23 +6,22 @@
 // Project Name : UEC2_PRJ_STATKI
 // Target Devices : BASYS3
 // 
-// Description :matryca pozycji statków
+// Description :matryca pozycji statków, kontrola wpisywania i odczytywania danych
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 module game_board 
     (
-        input logic clk,                           // Zegar
-        input logic rst,                         
-        input logic pick_ship,
-        input logic [7:0] mouse_pos,
-        input logic [6:0] ship_xy_host,
-        input logic [6:0] ship_xy_guest,
-        input logic pick_place,
-        input logic [1:0] msg_in,
-        input logic [7:0] check_in,
-        input logic       addres_recieved,
+        input logic        clk,                           
+        input logic        rst,                         
+        input logic        pick_ship,
+        input logic  [7:0] mouse_pos,
+        input logic  [6:0] ship_xy_host,
+        input logic  [6:0] ship_xy_guest,
+        input logic        pick_place,
+        input logic  [1:0] msg_in,
+        input logic  [7:0] check_in,
+        input logic        addres_recieved,
         output logic [1:0] msg_out,
-        //output logic [7:0] check_out,
         output logic [1:0] ship_code_host,
         output logic [1:0] ship_code_guest, 
         output logic [3:0] ship_count,
