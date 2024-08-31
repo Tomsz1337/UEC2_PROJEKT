@@ -17,6 +17,11 @@ module game_board
         input logic [7:0] mouse_pos,
         input logic [6:0] ship_xy_host,
         input logic [6:0] ship_xy_guest,
+        input logic pick_place,
+        input logic [1:0] msg_in,
+        input logic [7:0] check_in,
+        output logic [1:0] msg_out,
+        //output logic [7:0] check_out,
         output logic [1:0] ship_code_host,
         output logic [1:0] ship_code_guest, 
         output logic [3:0] ship_count
@@ -30,6 +35,7 @@ module game_board
                 ship_count <= 4'b0000;
                 ship_code_host <= 2'b00;
                 ship_code_guest <= 2'b00;
+                msg_out <= 2'b00;
 
                 board_host[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -42,7 +48,7 @@ module game_board
                 board_host[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_host[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
-                board_guest[0] <= {2'b10, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
+                board_guest[0] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[1] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[2] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[3] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
@@ -51,7 +57,7 @@ module game_board
                 board_guest[6] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[7] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
                 board_guest[8] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
-                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b10};
+                board_guest[9] <= {2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
             end 
             
@@ -61,14 +67,35 @@ module game_board
                 ship_count ++;
             end
             
-               
+            else if (pick_place == 0) begin
+
+                if(board_host[check_in[7:4]][check_in[3:0]] == 2'b00) begin
+                    msg_out <= 2'b11;
+                    board_host[check_in[7:4]][check_in[3:0]] <= 2'b11;
+                end
+                else if(board_host[check_in[7:4]][check_in[3:0]] == 2'b01) begin
+                    msg_out <= 2'b10;
+                    board_host[check_in[7:4]][check_in[3:0]] <= 2'b10;
+                end else begin
+                    msg_out <= 2'b00;
+                end
+                
+            end
+
+            else if(pick_place == 1) begin
+                if(msg_in != 0) begin
+                    board_guest[mouse_pos[7:4]][mouse_pos[3:0]] <= msg_in;
+                end
+
+            end
             
             else begin
+
                 ship_code_host <= board_host[ship_xy_host/10][ship_xy_host%10];
                 ship_code_guest <= board_guest[ship_xy_guest/10][ship_xy_guest%10];
             end
 
-            end
+        end
         
             
 endmodule

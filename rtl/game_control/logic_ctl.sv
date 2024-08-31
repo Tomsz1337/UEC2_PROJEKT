@@ -18,11 +18,16 @@ import vga_pkg::*; (
     input logic        mouse_left,
     input logic [11:0] mouse_xpos,
     input logic [11:0] mouse_ypos,
-    input logic        answer,
+   
     input logic        start_button,
     input logic        board_addres,
+    input logic [1:0] msg_send,
+    input logic [1:0] msg_in,
+    input logic [7:0] check_in,
+    output logic [7:0] check_out,
     input logic [3:0]  ship_count,
     output logic [7:0] mouse_position,
+    output logic [7:0] addres4check,
     output logic       pick_place,
     output logic       pick_ship,
     output logic [3:0] state_led,
@@ -39,43 +44,29 @@ typedef enum bit [1:0]
 STATE_T state, state_nxt;
 
 logic player;
-logic hit_buf;
-logic answer_buf;
-logic pick_place_nxt;
-logic [7:0] pick_position;
-logic your_turn;
 
-/*always_ff @(posedge begin_turn)begin
-    your_turn <= '1;
-end
-always_ff @(negedge begin_turn)begin
-    your_turn <= '1;
-end*/
+logic your_turn;
+logic your_turn_nxt;
+
 
 always_ff @(posedge clk) begin : xypos_blk
         if(rst) begin
             player <= '0;
-            state    <= IDLE;
+            state    <= PICK_SHIP;
             mouse_position <= 0;
-            pick_place <= '0;
+            
             your_turn <= '0;
         end else begin
             if(vga_in.hcount == 0 & vga_in.vcount == 0)begin
                 
                 player <= board_addres;
                 state    <= state_nxt;
-                //if(player_already_set == 0 & set_player == 1)begin
-                 //   your_turn <= '1;
-                //end 
-               // else begin
-                    pick_place <= pick_place_nxt;
-                    mouse_position[7:4] <= (mouse_ypos-193)/32;
-                    mouse_position[3:0] <= (mouse_xpos-608)/32;
+                your_turn <= your_turn_nxt;
+                
+                mouse_position[7:4] <= (mouse_ypos-193)/32;
+                mouse_position[3:0] <= (mouse_xpos-608)/32;
                     
-                    /*else if (mouse_left == '1 && mouse_xpos <= 416)
-                        mouse_position[7:4] <= (mouse_ypos-193)/32;
-                        mouse_position[3:0] <= (mouse_xpos-96)/32;
-                    */
+                   
             end
         end
 end
@@ -86,7 +77,7 @@ always_comb begin : state_nxt_blk
         //IDLE:           state_nxt = start_button == '1 ? PICK_SHIP : IDLE;                               // dodac counter statkow
         PICK_SHIP:      state_nxt = ship_count == 11 ? (player ? WAIT : TURN) : PICK_SHIP;                                // sygnal pick_rdy dodany
         WAIT:           state_nxt = your_turn == '1 ? TURN : WAIT;                                  // sygnal hit
-        TURN:           state_nxt = hit_buf == '1 && answer_buf == '1 ? WAIT : TURN;
+        TURN:           state_nxt = your_turn ? TURN : WAIT;
         
         default:    state_nxt = PICK_SHIP;
     endcase  
@@ -96,7 +87,7 @@ end
 always_comb begin : output_blk
     case(state)
         IDLE: begin
-            pick_position = 0;
+            
             pick_ship = 0;
             state_led = 4'b1000;
         end
@@ -113,16 +104,28 @@ always_comb begin : output_blk
 
         WAIT: begin
             pick_place = 0;
+            if(msg_send != 0 ) begin
+                addres4check = check_in;
+                your_turn_nxt = 1;
+            end
             state_led = 4'b0010;
         end
         TURN: begin
             pick_place = 1;
+            if(mouse_left == 1)begin
+                check_out = mouse_position;
+            end
             state_led = 4'b0001;
-
+            if(msg_in != 0) begin
+                your_turn_nxt = 0;
+            end
+            else begin
+                your_turn_nxt = 1;
+            end
         end
 
         default: begin
-            pick_place_nxt = 0;
+           
 
         end
     endcase
