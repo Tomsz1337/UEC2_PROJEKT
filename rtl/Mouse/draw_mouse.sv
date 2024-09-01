@@ -27,6 +27,7 @@ always_ff @(posedge clk) begin
     vga_out.vblnk  <= vga_in.vblnk;
     vga_out.hcount <= vga_in.hcount;
     vga_out.hsync  <= vga_in.hsync;
+    vga_out.hblnk  <= vga_in.hblnk;
 end
 
 MouseDisplay u_MouseDisplay(

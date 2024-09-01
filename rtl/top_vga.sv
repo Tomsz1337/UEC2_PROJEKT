@@ -113,7 +113,8 @@ logic_ctl u_logic_ctl(
     .check_out(check_out[9:2]),
     .addres4check(addres4check),
     .addres_sent(check_out[10]),
-    .vga_in(draw_out)
+    .hcount(draw_out.hcount),
+    .vcount(draw_out.vcount)
 );
 game_board u_game_board(
     .clk(clk_75),
@@ -130,7 +131,8 @@ game_board u_game_board(
     .msg_in(check_in[1:0]),
     .msg_out(check_out[1:0]),
     .addres_recieved(check_in[10]),
-    .vga_in(draw_out)
+    .hcount(draw_out.hcount),
+    .vcount(draw_out.vcount)
 );
 
 always_comb begin

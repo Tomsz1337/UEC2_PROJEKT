@@ -28,7 +28,7 @@ module top_vga_basys3 (
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    output wire led1, led2, led3, led4,
+    output wire led1, led2, led3,
     input  wire JB1, JB2, JB3, JB4, JB5, JB6, JB7, JB8, JA1, JA2, JA5,
     output wire JC1, JC2, JC3, JC4, JC5, JC6, JC7, JC8, JA3, JA4, JA6
 );
@@ -86,7 +86,7 @@ top_vga u_top_vga (
     .b(vgaBlue),
     .hs(Hsync),
     .vs(Vsync),
-    .led({led1, led2, led3, led4}),
+    .led({led1, led2, led3}),
     .check_in(check_in),
     .check_out(check_out),
     .board_addres(sw0)
