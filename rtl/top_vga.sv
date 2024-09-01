@@ -29,7 +29,7 @@
      output logic [10:0] check_out,
      output logic vs,
      output logic hs,
-     output logic [3:0] led,
+     output logic [2:0] led,
      output logic [3:0] r,
      output logic [3:0] g,
      output logic [3:0] b

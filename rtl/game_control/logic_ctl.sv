@@ -29,7 +29,7 @@ import vga_pkg::*; (
     output logic [7:0]  addres4check,
     output logic        pick_place,
     output logic        pick_ship,
-    output logic [3:0]  state_led,
+    output logic [2:0]  state_led,
     vga_if.in vga_in
 );
 typedef enum bit [1:0]
@@ -99,7 +99,7 @@ always_comb begin : output_blk
             else begin
                 pick_ship_nxt = 0;
             end
-            state_led = 4'b0100;
+            state_led = 3'b100;
             if(player == 1)begin
                 your_turn_nxt = '0;
             end else begin
@@ -114,7 +114,7 @@ always_comb begin : output_blk
                 your_turn_nxt = 1;
             end
             addres_sent_nxt = '0;
-            state_led = 4'b0010;
+            state_led = 3'b010;
         end
         TURN: begin
             pick_place_nxt = 1;
@@ -122,7 +122,7 @@ always_comb begin : output_blk
                 check_out_nxt = mouse_position;
                 addres_sent_nxt = '1;
             end
-            state_led = 4'b0001;
+            state_led = 3'b001;
             if(msg_in != 0) begin
                 your_turn_nxt = 0;
             end
